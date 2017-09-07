@@ -1,0 +1,30 @@
+---
+title: "School to School Comparison of Deployment Measures"
+output: word_document
+params:
+  t2_measures: NA
+  t2_matched: NA
+  t2_selected: NA
+---
+```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6.5}
+
+#loop through each deployment measure
+for (i in params$t2_measures){
+cat('\n')  
+cat("#",i, "\n")
+print(
+ggplot(data = rbind(params$t2_matched, params$t2_selected)) +
+      geom_bar(mapping = aes(
+        x = reorder(ID, get(i)),
+        y = get(i),
+        fill = color), 
+        stat = "identity") + 
+      scale_fill_manual(values = c("#9fb9c8","#104f75")) +
+      guides(fill = FALSE) +
+      coord_flip() + 
+      xlab("School") + 
+      ylab(i) + 
+      theme_bw()
+)
+cat('\n') 
+}

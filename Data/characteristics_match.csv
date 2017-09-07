@@ -1,0 +1,27 @@
+Characteristic_Label,Match_type
+Pay Band,Exact
+Region,Exact
+Local Authority,Exact
+Local Authority District,Exact
+Rurality,Exact
+Deprivation (IMD score),Percentage
+Coastal?,Exact
+School Type,Exact
+Selective?,Exact
+Religious,Exact
+Post-16?,Exact
+Number of pupils (FTE),Percentage
+% pupils with SEN support,Percentage point
+% pupils eligible for FSM,Percentage point
+% Non White pupils,Percentage point
+% pupils with English not as First Language,Percentage point
+% pupils absent (based on 5 half terms),Percentage point
+% pupils that achieved expected for RWM,Percentage point
+% pupils that achieved high for RWM,Percentage point
+KS4 Value Added Progress 8,Percentage point
+KS5 Value Added A Level,Percentage point
+KS5 Value Added Academic,Percentage point
+KS5 Value Added Applied General,Percentage point
+Ofsted Overall Effectiveness,Exact
+Ofsted Quality of Teaching,Exact
+Ofsted Leadership and Management,Exact

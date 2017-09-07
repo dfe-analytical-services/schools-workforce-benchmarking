@@ -1,0 +1,69 @@
+Characteristic_Label,Type
+Pay Band,Primary
+Region,Primary
+Local Authority,Primary
+Local Authority District,Primary
+Rurality,Primary
+Deprivation (IMD score),Primary
+Coastal?,Primary
+School Type,Primary
+Selective?,Primary
+Religious,Primary
+Number of pupils (FTE),Primary
+% pupils with SEN support,Primary
+% pupils eligible for FSM,Primary
+% Non White pupils,Primary
+% pupils with English not as First Language,Primary
+% pupils absent (based on 5 half terms),Primary
+% pupils that achieved expected for RWM,Primary
+% pupils that achieved high for RWM,Primary
+Ofsted Overall Effectiveness,Primary
+Ofsted Quality of Teaching,Primary
+Ofsted Leadership and Management,Primary
+Pay Band,Secondary
+Region,Secondary
+Local Authority,Secondary
+Local Authority District,Secondary
+Rurality,Secondary
+Deprivation (IMD score),Secondary
+Coastal?,Secondary
+School Type,Secondary
+Selective?,Secondary
+Religious,Secondary
+Post-16?,Secondary
+Number of pupils (FTE),Secondary
+% pupils with SEN support,Secondary
+% pupils eligible for FSM,Secondary
+% Non White pupils,Secondary
+% pupils with English not as First Language,Secondary
+% pupils absent (based on 5 half terms),Secondary
+KS4 Value Added Progress 8,Secondary
+KS5 Value Added A Level,Secondary
+KS5 Value Added Academic,Secondary
+KS5 Value Added Applied General,Secondary
+Ofsted Overall Effectiveness,Secondary
+Ofsted Quality of Teaching,Secondary
+Ofsted Leadership and Management,Secondary
+Pay Band,Special
+Region,Special
+Local Authority,Special
+Local Authority District,Special
+Rurality,Special
+Deprivation (IMD score),Special
+Coastal?,Special
+School Type,Special
+Selective?,Special
+Religious,Special
+Post-16?,Special
+Number of pupils (FTE),Special
+% pupils with SEN support,Special
+% pupils eligible for FSM,Special
+% Non White pupils,Special
+% pupils with English not as First Language,Special
+% pupils absent (based on 5 half terms),Special
+% pupils that achieved expected for RWM,Special
+% pupils that achieved high for RWM,Special
+KS4 Value Added Progress 8,Special
+Ofsted Overall Effectiveness,Special
+Ofsted Quality of Teaching,Special
+Ofsted Leadership and Management,Special
