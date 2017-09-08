@@ -14,7 +14,7 @@ The application allows you to do the following:
 2. See where it sits on the national distribution for each measure in the SFR underlying data
 3. Subset the distribution to compare schools against schools with similar characteristics 
 4. Compare measures for individual schools against one another
-5. Generate reports with multiple variables for printing sharing
+5. Generate reports with multiple variables for sharing
 
 ## Running the project
 
