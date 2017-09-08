@@ -12,6 +12,7 @@ Hash: 14dfb3e8ffe20996118306ff4de1fab2
 Package: DT
 Source: CRAN
 Version: 0.2
+Hash: 36b032203797956fedad5a25055016a9
 Requires: htmltools, htmlwidgets, magrittr
 
 Package: R6
@@ -24,10 +25,19 @@ Source: CRAN
 Version: 1.1-2
 Hash: c0d56cd15034f395874c870141870c25
 
+Package: RSelenium
+Source: CRAN
+Version: 1.7.1
+Requires: openssl, caTools, httr, XML, binman, wdman
+
 Package: Rcpp
 Source: CRAN
 Version: 0.12.12
 Hash: 8b3d5ebb9a9a4ab5c86b3a81b0cfb774
+
+Package: XML
+Source: CRAN
+Version: 3.98-1.9
 
 Package: assertthat
 Source: CRAN
@@ -54,6 +64,11 @@ Source: CRAN
 Version: 0.2
 Hash: 8ab2dbf7ea120cf2d31183e0bf388485
 Requires: Rcpp, bindr, plogr
+
+Package: binman
+Source: CRAN
+Version: 0.1.0
+Requires: assertthat, jsonlite, yaml, xml2, httr, rappdirs, semver
 
 Package: bitops
 Source: CRAN
@@ -82,6 +97,11 @@ Package: colorspace
 Source: CRAN
 Version: 1.3-2
 Hash: 0bf8618b585fa98eb23414cd3ab95118
+
+Package: crayon
+Source: CRAN
+Version: 1.3.2
+Hash: 576a9d297a567d6a5ebd164ca5221590
 
 Package: curl
 Source: CRAN
@@ -158,6 +178,7 @@ Requires: Rcpp, digest
 Package: htmlwidgets
 Source: CRAN
 Version: 0.9
+Hash: 7514f6ea9f3bef6d9b6c945095275302
 Requires: htmltools, jsonlite, yaml
 
 Package: httpuv
@@ -179,8 +200,8 @@ Hash: 9c51936d8dd00b2f1d4fe9d10499694c
 
 Package: knitr
 Source: CRAN
-Version: 1.16
-Hash: 3b8dc00d51027c6d041d56bc92136452
+Version: 1.17
+Hash: f6b2bf543ee3e25f5b92bb46f9958c5f
 Requires: digest, evaluate, highr, markdown, stringr, yaml
 
 Package: labeling
@@ -264,6 +285,11 @@ Version: 1.8.4
 Hash: 8fbaff6962e3421b5c9652eebae36159
 Requires: Rcpp
 
+Package: praise
+Source: CRAN
+Version: 1.0.0
+Hash: 77da8f1df873a4b91e5c4a68fe2fb1b6
+
 Package: psych
 Source: CRAN
 Version: 1.7.5
@@ -275,6 +301,10 @@ Source: CRAN
 Version: 0.2.3
 Hash: d741f262ed1b74543e33c5426a497996
 Requires: magrittr, rlang, tibble
+
+Package: rappdirs
+Source: CRAN
+Version: 0.3.1
 
 Package: readr
 Source: CRAN
@@ -305,11 +335,15 @@ Version: 0.1.1
 Hash: 86c53487ce7f82f0a7cc11c816060910
 
 Package: rmarkdown
-Source: CRAN
-Version: 1.6
-Hash: 40f4034a7b8e28edc2b384bdb0c4d537
+Source: github
+Version: 1.6.0.9003
+Hash: d99b29bd5fe16cf6f82f1cb30941bfaa
 Requires: base64enc, caTools, evaluate, htmltools, jsonlite, knitr,
     rprojroot, stringr, yaml
+GithubRepo: rmarkdown
+GithubUsername: rstudio
+GithubRef: master
+GithubSha1: fb3a614e49115858b655d1354f4f33cad66e385b
 
 Package: rprojroot
 Source: CRAN
@@ -335,10 +369,15 @@ Version: 0.3-1
 Hash: 367275e3dcdd208339e131c7a41bec56
 Requires: stringr
 
+Package: semver
+Source: CRAN
+Version: 0.2.0
+Requires: Rcpp, assertthat
+
 Package: shiny
 Source: CRAN
-Version: 1.0.3
-Hash: f133585c72ea31592f663e68c6ff0b3e
+Version: 1.0.5
+Hash: 4d47532a807122bfd6bc3818310f9d2e
 Requires: R6, digest, htmltools, httpuv, jsonlite, mime, sourcetools,
     xtable
 
@@ -376,6 +415,16 @@ Version: 1.2.0
 Hash: 25a86d7f410513ebb7c0bc6a5e16bdc3
 Requires: magrittr, stringi
 
+Package: subprocess
+Source: CRAN
+Version: 0.8.0
+
+Package: testthat
+Source: CRAN
+Version: 1.0.2
+Hash: 88d5291104227f9dc2e7c7c1d0eb6c74
+Requires: R6, crayon, digest, magrittr, praise
+
 Package: tibble
 Source: CRAN
 Version: 1.3.3
@@ -395,6 +444,11 @@ Hash: 72d5fada870c90b835bbdfc281283c99
 Requires: broom, dplyr, forcats, ggplot2, haven, hms, httr, jsonlite,
     lubridate, magrittr, modelr, purrr, readr, readxl, rvest, stringr,
     tibble, tidyr, xml2
+
+Package: wdman
+Source: CRAN
+Version: 0.2.2
+Requires: assertthat, yaml, binman, semver, subprocess
 
 Package: xml2
 Source: CRAN
