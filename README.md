@@ -1,4 +1,4 @@
-# Schools Workforce Benchmarking
+# Schools Workforce Benchmarking [![Build Status](https://travis-ci.org/DFEAGILEDEVOPS/schools-workforce-benchmarking.svg?branch=master)](https://travis-ci.org/DFEAGILEDEVOPS/schools-workforce-benchmarking)
 
 ## Summary
 
