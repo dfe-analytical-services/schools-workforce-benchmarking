@@ -22,7 +22,7 @@ To run the project on your machine you need to do the following:
 
 1. Clone the repo
 
-   `git clone https://github.com/DFEAGILEDEVOPS/schools-workforce-benchmarking.git`
+`git clone https://github.com/DFEAGILEDEVOPS/schools-workforce-benchmarking.git`
 
 2. Ensure that you have [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. This is so that packrat can install dependencies correctly.
 
@@ -30,6 +30,6 @@ To run the project on your machine you need to do the following:
 
 4. Wait for packrat to install the packages (this can take a while). Until you see the following do not stop the code:
 
-   `Packrat bootstrap successfully completed. Restarting R and entering packrat mode...`
+`Packrat bootstrap successfully completed. Restarting R and entering packrat mode...`
    
 5. Open the UI.R or Server.R file and hit Run App.    
