@@ -22,7 +22,7 @@ To run the project on your machine you need to do the following:
 
 1. Clone the repo
 
-   `git clone https://github.com/adamrobinson361/schools-workforce-benchmarking.git`
+   `git clone https://github.com/DFEAGILEDEVOPS/schools-workforce-benchmarking.git`
 
 2. Ensure that you have [Rtools](https://cran.r-project.org/bin/windows/Rtools/) installed. This is so that packrat can install dependencies correctly.
 
