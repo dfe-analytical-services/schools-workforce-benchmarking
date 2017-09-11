@@ -123,18 +123,18 @@ shinyUI(
   
       tabPanel(
         "Main Tool",
-        h2("Comparison of Deployment Measures to Similiar Schools"),
+        h2("Comparison of Measures to Similiar Schools"),
         sidebarLayout(
           sidebarPanel(
             id = "t1_sidebar",
-          #dropdown for deployment measures
+          #dropdown for measures
             uiOutput("t1_measures"),
           #checkboxes for school characteristics
             uiOutput("t1_characteristics"),
           #button to clear selection of characteristics
             actionButton("t1_clear", label = "Clear"),
           #dialog box to choose measures for report
-            bsModal(id = "t1_dialog_box", title = "Choose deployment measures for report",
+            bsModal(id = "t1_dialog_box", title = "Choose measures for report",
                     trigger = "t1_choose_measures", size = "large",
                   #dropdown of report measures
                     uiOutput("t1_report_measures"),
@@ -171,7 +171,7 @@ shinyUI(
                 br(),
                 br(),
 
-              #text saying value of selected deployment measure for selected school
+              #text saying value of selected measure for selected school
                 textOutput("t1_school_ID_value"),
               #text saying the range for group selected
                 textOutput("t1_range"),
@@ -202,11 +202,11 @@ shinyUI(
   #tab 2 - school to school comparison
       tabPanel(
         "School to School",
-        h2("School to School Comparison of Deployment Measures"),
+        h2("School to School Comparison of Measures"),
         sidebarLayout(
           sidebarPanel(
             id = "t2_sidebar",
-          #dropdown for deployment measures
+          #dropdown for measures
             uiOutput("t2_measures"),
           #dropdown to choose other schools, limited to 10  
             selectizeInput(
@@ -219,7 +219,7 @@ shinyUI(
             em("Please note, comparing very different schools may not produce meaningful
             results."),
 
-            bsModal(id = "t2_dialog_box", title = "Choose deployment measures for report",
+            bsModal(id = "t2_dialog_box", title = "Choose measures for report",
                     trigger = "t2_choose_measures", size = "large",
                     uiOutput("t2_report_measures"),
                     downloadButton("t2_report", "Generate report"))

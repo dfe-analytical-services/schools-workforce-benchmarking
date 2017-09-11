@@ -30,7 +30,7 @@ characteristics_dd <- read_csv("Data/Characteristics.csv")
 #list of characteristics and their type of match for comparisons
 characteristics_match <- read_csv("Data/characteristics_match.csv")
 
-# #list of deployment measures and what school phase they relate to
+# #list of measures and what school phase they relate to
 # measures_dd <- read_csv("Data/Deployment_Measures.csv")
 
 #define server logic -------------------------------------------------------------------------
@@ -50,12 +50,6 @@ shinyServer(function(input, output, session) {
 
     #Show the navigation bar at the top
     show("navbar")
-    
-    #The text for the school
-    # #school name
-    # output$t1_School_ID_name <- renderText({
-    #   paste("School:", t1_selected_ID()$`Auxiliary Name`)
-    # })
     
     #school name
     output$t1_School_ID_name <- renderText({
@@ -119,7 +113,7 @@ shinyServer(function(input, output, session) {
   # output$t1_measures <- renderUI({
   #   selectizeInput(
   #     inputId = "t1_measures", 
-  #     label = "Select Deployment Measure:",
+  #     label = "Select Measure:",
   #     choices = measures_dd$Deployment_Measure[measures_dd$Type == Data$`School Phase`[Data$ID == input$t1_School_ID]])
   # })
   
@@ -127,7 +121,7 @@ shinyServer(function(input, output, session) {
   output$t1_measures <- renderUI({
     selectizeInput(
       inputId = "t1_measures", 
-      label = "Select Deployment Measure:",
+      label = "Select Measure:",
       choices = list("Staff Numbers" = colnames(Data)[11:27],
                      "Staff Characteristics" = colnames(Data)[28:31],
                      "Staff Pay" = list(colnames(Data)[32]),
@@ -168,7 +162,7 @@ shinyServer(function(input, output, session) {
   
   #Create reactive dataset of schools matched to characteristics
   matched_schools <- reactive({
-    #require the school ID and the deployment measure to be selected
+    #require the school ID and the measure to be selected
     req(input$t1_School_ID, input$t1_measures)
 
     temp <- selected_phase_data()
@@ -247,7 +241,7 @@ shinyServer(function(input, output, session) {
   
 
   
-  #text saying value of selected deployment measure for selected school
+  #text saying value of selected measure for selected school
   output$t1_school_ID_value <- renderText({
     req(input$t1_School_ID, input$t1_measures)
     paste("Your", input$t1_measures, "is", t1_selected_ID()[[input$t1_measures]])
@@ -278,7 +272,7 @@ shinyServer(function(input, output, session) {
     output$t1_report_measures <- renderUI({
       selectizeInput(
         inputId = "t1_report_measures", 
-        label = "Select Deployment Measure:",
+        label = "Select Measure:",
         choices = list("Staff Numbers" = colnames(Data)[11:27],
                        "Staff Characteristics" = colnames(Data)[28:31],
                        "Staff Pay" = list(colnames(Data)[32]),
@@ -348,7 +342,7 @@ shinyServer(function(input, output, session) {
   output$t2_measures <- renderUI({
     selectizeInput(
       inputId = "t2_measures", 
-      label = "Select Deployment Measure:",
+      label = "Select Measure:",
       choices = list("Staff Numbers" = colnames(Data)[11:27],
                      "Staff Characteristics" = colnames(Data)[28:31],
                      "Staff Pay" = list(colnames(Data)[32]),
@@ -396,7 +390,7 @@ shinyServer(function(input, output, session) {
   output$t2_report_measures <- renderUI({
     selectizeInput(
       inputId = "t2_report_measures", 
-      label = "Select Deployment Measure:",
+      label = "Select Measure:",
       choices = list("Staff Numbers" = colnames(Data)[11:27],
                      "Staff Characteristics" = colnames(Data)[28:31],
                      "Staff Pay" = list(colnames(Data)[32]),
