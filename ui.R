@@ -57,22 +57,22 @@ shinyUI(
           ),
           mainPanel(
             p(
-              "This tool enables your school to compare a variety of deployment approaches 
+              "This tool enables your school to compare a variety of approaches 
               (e.g. the number of teachers employed, percentage of teachers that are employed part-time, 
               and the average age of teachers employed) to other schools."
             ),
             br(),
-            "On the ‘Main tool’ tab, you will be able to select the deployment 
+            "On the ‘Main tool’ tab, you will be able to select the
             measure you would like to compare, and then a group of similar schools 
             will be calculated based on you ticking school characteristics of your 
             choice such as region, number of pupils and Ofsted rating. This will 
-            produce a distribution of the deployment measure and an indication of 
+            produce a distribution of the measure and an indication of 
             where your school lies on this distribution.",
             p("Please note that here you will only be able to compare your school to 
             other schools of the same phase."),
             br(),
             "On the ‘School to school’ tab, you will again be able to select a 
-            deployment measure to compare, but here you will be able to select up to 
+            measure to compare, but here you will be able to select up to 
             10 individual schools of your choice to compare against.",
             p("Please note, comparing very different schools may not produce meaningful
             results."),
