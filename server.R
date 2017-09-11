@@ -6,8 +6,9 @@
 
 library(tidyverse)
 
+source('R/functions.R')
+
 #Load in relevant data  ----------------------------------------------------------------------
-#Data <- read_csv("Data/deploy data.csv")
 
 Data <- read_csv("Data/deploy_sfr_2016.csv")
 
@@ -15,23 +16,15 @@ Data <- read_csv("Data/deploy_sfr_2016.csv")
 Data[Data == 'SUPP'] <- NA
 Data[Data == "DNS"] <- NA
 
-
 Data[11:33] <- lapply(Data[,11:33], as.numeric)
 
 Data$ID <- paste(Data$URN,' - ', Data$`School Name`, sep = '')
-
-
-
-
 
 #list of school characteristics and what school phase they relate to
 characteristics_dd <- read_csv("Data/Characteristics.csv") 
 
 #list of characteristics and their type of match for comparisons
 characteristics_match <- read_csv("Data/characteristics_match.csv")
-
-# #list of measures and what school phase they relate to
-# measures_dd <- read_csv("Data/Deployment_Measures.csv")
 
 #define server logic -------------------------------------------------------------------------
 
@@ -108,15 +101,6 @@ shinyServer(function(input, output, session) {
     choices = Data$ID[Data$`School Phase` %in% c('Primary','Secondary','Special')],
     server = TRUE)
   
-  
-  # #Create reactive dropdown for measures based on selected phase 
-  # output$t1_measures <- renderUI({
-  #   selectizeInput(
-  #     inputId = "t1_measures", 
-  #     label = "Select Measure:",
-  #     choices = measures_dd$Deployment_Measure[measures_dd$Type == Data$`School Phase`[Data$ID == input$t1_School_ID]])
-  # })
-  
   #Create reactive dropdown for measures based on selected phase 
   output$t1_measures <- renderUI({
     selectizeInput(
@@ -155,43 +139,23 @@ shinyServer(function(input, output, session) {
     filter(Data, ID == input$t1_School_ID)
   })
   
-  #Create reactive dataset for all schools filtered by phase
-  selected_phase_data <- reactive({
-    filter(Data, `School Phase` == Data$`School Phase`[Data$ID == input$t1_School_ID])
-  })
-  
   #Create reactive dataset of schools matched to characteristics
   matched_schools <- reactive({
+    
     #require the school ID and the measure to be selected
     req(input$t1_School_ID, input$t1_measures)
-
-    temp <- selected_phase_data()
-
-    for (i in input$t1_characteristics) {
-      val <- as.character(t1_selected_ID()[,i])
-
-      type <- as.character(characteristics_match[characteristics_match$Characteristic_Label == i,
-                                                 "Match_type"])
-      if (type == "Percentage") {
-        #This line is where the 10% tolerance is applied to numerical variables 
-        #deprivation and number of pupils
-        temp <- filter(temp, get(i) > as.numeric(val) * 0.9, get(i) < as.numeric(val) * 1.1 )
-      }
-      #this is for all other numerical variables
-      else if (type == "Percentage point") {
-        temp <- filter(temp,  get(i) > as.numeric(val) - 0.1, get(i) < as.numeric(val) + 0.1)
-      }
-      #this is where similar schools will have the exact same value as chosen school
-      else if (type == "Exact") {
-        temp <- filter(temp, get(i) == val)
-      }
-      rm(val)
-    }
-    temp
+    
+    #Apply matched schools function
+    
+    fn_match_schools(
+      Data, 
+      input$t1_School_ID,
+      input$t1_characteristics,
+      characteristics_match
+      )
+  
   })
-  
-  
-  
+
   # Define the chart as an output variable - option for density plot or histogram
   output$t1_chart <- renderPlot({
     if (input$plot_type == "density") {
@@ -292,8 +256,8 @@ shinyServer(function(input, output, session) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
-      tempReport <- file.path(tempdir(), "t1_Report.Rmd")
-      file.copy("t1_Report.Rmd", tempReport, overwrite = TRUE)
+      tempReport <- file.path(tempdir(), "R/t1_Report.Rmd")
+      file.copy("R/t1_Report.Rmd", tempReport, overwrite = TRUE)
       
       # Set up parameters to pass to Rmd document
       params <- list(
@@ -366,11 +330,7 @@ shinyServer(function(input, output, session) {
   #bar chat of selected schools
   output$t2_chart <- renderPlot({
     req(input$t2_measures)
-    
-    # plot_data <- rbind(selected_schools(), t2_selected_ID())
-    # 
-    # plot_data[is.na(plot_data)] <- 0
-    
+
     ggplot(data = rbind(selected_schools(), t2_selected_ID())) +
       geom_bar(mapping = aes(
         x = reorder(ID, get(input$t2_measures)),
@@ -408,7 +368,7 @@ shinyServer(function(input, output, session) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
-      t2_tempReport <- file.path(tempdir(), "t2_Report.Rmd")
+      t2_tempReport <- file.path(tempdir(), "R/t2_Report.Rmd")
       file.copy("t2_Report.Rmd", t2_tempReport, overwrite = TRUE)
   
       # Set up parameters to pass to Rmd document
