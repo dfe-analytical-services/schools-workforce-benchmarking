@@ -221,9 +221,10 @@ shinyServer(function(input, output, session) {
   output$t1_data_table <-  DT::renderDataTable({
       matched_schools() %>%
       mutate(Value = matched_schools()[[input$t1_measures]]) %>% 
-      # mutate(Link = "http://www.education.gov.uk/edubase/home.xhtml") %>%
+      mutate(`School Name` = paste("<a href='https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/",
+                                   URN, "' target='_blank'",">", `School Name`, "</a>", sep = "")) %>%
       select(URN, `School Name`, Value)
-  }, options = list(pageLength = 15, autoWidth = FALSE))
+  }, options = list(pageLength = 15, autoWidth = FALSE), escape = FALSE)
   
   #table showing the characteristics of the selected school ID
   output$t1_characteristics_table <-  DT::renderDataTable({
