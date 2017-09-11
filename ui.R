@@ -22,8 +22,6 @@ shinyUI(
     tags$head(tags$script(src = "effects.js")
     ),
   
-  
-    
   #create a page with navigation bar at the top
     navbarPage(
       "Schools Workforce Benchmarking",
