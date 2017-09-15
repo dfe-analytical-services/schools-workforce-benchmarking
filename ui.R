@@ -31,7 +31,7 @@ shinyUI(
   
       tabPanel(
         "Front Page",
-        h2("Schools Workforce Benchmarking (BETA version)"),
+        h2("Schools Workforce Benchmarking (BETA)"),
         
         sidebarLayout(
           sidebarPanel(
@@ -54,33 +54,11 @@ shinyUI(
             actionButton('change_t1_School_ID', 'Change school')
           ),
           mainPanel(
+            h3("Summary"),
             p(
-              "This tool enables your school to compare a variety of approaches 
-              (e.g. the number of teachers employed, percentage of teachers that are employed part-time, 
-              and the average age of teachers employed) to other schools."
-            ),
-            br(),
-            "On the ‘Main tool’ tab, you will be able to select the
-            measure you would like to compare, and then a group of similar schools 
-            will be calculated based on you ticking school characteristics of your 
-            choice such as region, number of pupils and Ofsted rating. This will 
-            produce a distribution of the measure and an indication of 
-            where your school lies on this distribution.",
-            p("Please note that here you will only be able to compare your school to 
-            other schools of the same phase."),
-            br(),
-            "On the ‘School to school’ tab, you will again be able to select a 
-            measure to compare, but here you will be able to select up to 
-            10 individual schools of your choice to compare against.",
-            p("Please note, comparing very different schools may not produce meaningful
-            results."),
-            br(),
-            "From both of these tabs you will be able to generate reports.",
-            br(),
-            br(),
-            "Our ‘Methodology’ tab details how the group of similar schools is calculated.",
-            br(),
-            br(),
+              "This web application allows you to visually compare published measures on schools
+               workforces against other schools of the same phase."
+            ), 
             p("The data in this tool is drawn from the 2016", 
               a("School Workforce Census,", 
                 href = "https://www.gov.uk/government/collections/statistics-school-workforce"), 
@@ -91,27 +69,34 @@ shinyUI(
               "and the latest",
               a("Schools Performance Tables.", href = "https://www.compare-school-performance.service.gov.uk/")
             ),
-            p("This tool is based on data provided to us by schools. 
-              Please note that not all school data is used for data quality/disclosure reasons.",
+            h3("Similar Schools"),
+            p("This tab allows you to visualise where a school sits on the national distribution for 
+             each measure. By selecting characteristics you can subset this distribution to compare 
+             againts schools that have similar characteristics to the selected school."
+              ),
+            h3("School to School"),
+            p("This tab allows you to select up to 10 individual schools that you would like to 
+              compare against the selected school and plots the resultant data."
+              ),
+            h3("Further Information"),
+            p("From both of these tabs you are be able to generate printable reports with the charts
+               for multiple measures"),
+            p("Data that was recorded as Supressed or not submitted in the published SFR is set
+              as blank throughout the tool."),
             br(),
             br(),
-            "Please find full guidance on using this tool attached."),
-            br(),
-            h4("Please begin by typing in your school’s name/URN on the right and
-               clicking submit:"),
-            h4("You can then navigate between the tabs at the top of the page."),
             br(),
             br(),
           #dfE logo
             img(
               src = "DfE_logo.png",
-              height = 65,
-              width = 130
+              height = 97.5,
+              width = 195
             ),
             br(),
             p("If you have any comments or feedback, please email", 
-              a("TeachersAnalysisUnit.MAILBOX@education.gov.uk", 
-                href = "mailto:TeachersAnalysisUnit.MAILBOX@education.gov.uk"))
+              a("Schoolsworkforce.BENCHMARKING@education.gov.uk", 
+                href = "mailto:Schoolsworkforce.BENCHMARKING@education.gov.uk"))
             ),
           position = "right"
           )
