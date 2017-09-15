@@ -120,7 +120,7 @@ shinyUI(
   #tab 1 - main tool
   
       tabPanel(
-        "Main Tool",
+        "Similar Schools",
         h2("Comparison of Measures to Similiar Schools"),
         sidebarLayout(
           sidebarPanel(
