@@ -56,7 +56,7 @@ shinyUI(
           mainPanel(
             h3("Summary"),
             p(
-              "This web application allows you to visually compare published measures on schools
+              "This web application allows you to visually compare published measures on school's
                workforces against other schools of the same phase."
             ), 
             p("The data in this tool is drawn from the 2016", 
@@ -71,8 +71,8 @@ shinyUI(
             ),
             h3("Similar Schools"),
             p("This tab allows you to visualise where a school sits on the national distribution for 
-             each measure. By selecting characteristics you can subset this distribution to compare 
-             againts schools that have similar characteristics to the selected school."
+             each measure. By selecting characteristics, you can subset this distribution to compare 
+             against schools that have similar characteristics to the selected school."
               ),
             h3("School to School"),
             p("This tab allows you to select up to 10 individual schools that you would like to 

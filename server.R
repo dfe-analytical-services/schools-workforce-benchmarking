@@ -24,6 +24,7 @@ Data$ID <- paste(Data$URN,' - ', Data$`School Name`, sep = '')
 characteristics_dd <- read_csv("Data/Characteristics.csv", col_types = cols(.default = "c")) 
 
 #list of characteristics and their type of match for comparisons
+
 characteristics_match <- read_csv("Data/characteristics_match.csv", col_types = cols(.default = "c"))
 
 #define server logic -------------------------------------------------------------------------
@@ -312,7 +313,7 @@ shinyServer(function(input, output, session) {
   #bar chat of selected schools
   output$t2_chart <- renderPlot({
     req(input$t2_measures)
-    
+
     fn_chart2(selected_schools(), t2_selected_ID(), input$t2_measures)
     
   })
@@ -340,6 +341,7 @@ shinyServer(function(input, output, session) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
+
       t2_tempReport <- file.path(tempdir(), "t2_Report.Rmd")
       file.copy("R/t2_Report.Rmd", t2_tempReport, overwrite = TRUE)
       
