@@ -13,60 +13,30 @@ params:
 ```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6.5}
 
 #loop through each deployment measure, chart and statements
-for (i in params$measures){
+for (i in params$measures) {
 cat('\n') #start new line 
 cat("#",i, "\n")
 
 #if density selected print density plot, else print histogram
-if (params$plot_type == "density") {
-  print(
-    ggplot() +
-    geom_density(
-      data = params$matched,
-      mapping = aes(x = get(i))
-      ) +
-    geom_vline(
-      data = params$selected,
-      aes(xintercept = get(i)),
-      colour = "red",
-      linetype = "dashed"
-    ) +
-    xlab(i) + theme_bw()
-    )
-} else {
-  print(
-    ggplot() +
-    geom_histogram(
-      data = params$matched,
-      mapping = aes(x = get(i)),
-      fill = "#104f75"
-    ) +
-    geom_vline(
-      data = params$selected,
-      aes(
-        xintercept = get(i)),
-        colour = "red",
-        linetype = "dashed"
-    ) +
-    xlab(i) + theme_bw()
-    )
-}
- cat('\n')
- cat('\n')
- cat('\n')
- cat(paste("Number of schools in comparison is", nrow(params$matched)),'\n')
- cat('\n')
- cat(paste("Your", i, "is", params$selected[i]),'\n')
- cat('\n')
- cat(paste("The range for the group you have selected is", 
-           min(params$matched[[i]], na.rm = TRUE), "to", 
-          max(params$matched[[i]], na.rm = TRUE)),'\n')
- cat('\n')
- cat(paste("The average for the group you have selected is",
-           round(mean(params$matched[[i]], na.rm = TRUE),1)),'\n')
- cat('\n')
- cat(paste("The median for the group you have selected is",
-           median(params$matched[[i]], na.rm = TRUE)),'\n')
+
+print(fn_chart1(params$matched, params$selected, i, params$plot_type))
+
+cat('\n')
+cat('\n')
+cat('\n')
+cat(paste("Number of schools in comparison is", nrow(params$matched)),'\n')
+cat('\n')
+cat(paste("Your", i, "is", params$selected[i]),'\n')
+cat('\n')
+cat(paste("The range for the group you have selected is", 
+         min(params$matched[[i]], na.rm = TRUE), "to", 
+        max(params$matched[[i]], na.rm = TRUE)),'\n')
+cat('\n')
+cat(paste("The average for the group you have selected is",
+         round(mean(params$matched[[i]], na.rm = TRUE),1)),'\n')
+cat('\n')
+cat(paste("The median for the group you have selected is",
+         median(params$matched[[i]], na.rm = TRUE)),'\n')
 }
 ```
 
