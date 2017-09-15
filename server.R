@@ -10,14 +10,16 @@ source('R/functions.R')
 
 #Load in relevant data  ----------------------------------------------------------------------
 
-Data <- read_csv("Data/deploy_sfr_2016.csv")
+Data <- read_csv("Data/deploy_sfr_2016.csv",  col_types = cols(.default = "c"))
 
-#Added this in to remove the SUPP measures until we decide what to do with them.
+#Set SUPP and DNS to NA
 Data[Data == 'SUPP'] <- NA
 Data[Data == "DNS"] <- NA
 
+#Set variables to numeric for plotting
 Data[11:33] <- lapply(Data[,11:33], as.numeric)
 
+#Create custom id column
 Data$ID <- paste(Data$URN,' - ', Data$`School Name`, sep = '')
 
 #list of school characteristics and what school phase they relate to
@@ -29,8 +31,8 @@ characteristics_match <- read_csv("Data/characteristics_match.csv")
 #define server logic -------------------------------------------------------------------------
 
 shinyServer(function(input, output, session) {
-
-##front page###-----------------------------------------------------------------  
+  
+  ##front page###-----------------------------------------------------------------    
   
   #only enable submit button when school ID is selected
   observe({
@@ -40,7 +42,7 @@ shinyServer(function(input, output, session) {
   
   #response to event of clicking submit School ID button
   observeEvent(input$submit_t1_School_ID, {
-
+    
     #Show the navigation bar at the top
     show("navbar")
     
@@ -58,7 +60,7 @@ shinyServer(function(input, output, session) {
     
     #Hide submit button
     hide("submit_t1_School_ID")
-
+    
     #show a new button to change school selected
     show("change_t1_School_ID")
     
@@ -91,14 +93,14 @@ shinyServer(function(input, output, session) {
     hide("navbar")
     
   })
-
-##tab 1###----------------------------------------------------------------------
-
+  
+  ##tab 1###----------------------------------------------------------------------
+  
   #update school ID dropdown when value is selected
   updateSelectizeInput(
     session = session, 
     inputId = 't1_School_ID',
-    choices = Data$ID[Data$`School Phase` %in% c('Primary','Secondary','Special')],
+    choices = Data$ID,
     server = TRUE)
   
   #Create reactive dropdown for measures based on selected phase 
@@ -118,10 +120,10 @@ shinyServer(function(input, output, session) {
     checkboxGroupInput(
       inputId = "t1_characteristics", 
       label = "Characteristics of Schools to compare against (by selecting a 
-        characteristic here you are comparing against schools that are
-        similar to you in that characteristic):",
+      characteristic here you are comparing against schools that are
+      similar to you in that characteristic):",
       choices = characteristics_dd$Characteristic_Label[characteristics_dd$Type == Data$`School Phase`[Data$ID == input$t1_School_ID]])
-   })
+  })
   
   #Create reaction to clear check boxes.
   observe({
@@ -152,10 +154,10 @@ shinyServer(function(input, output, session) {
       input$t1_School_ID,
       input$t1_characteristics,
       characteristics_match
-      )
-  
+    )
+    
   })
-
+  
   # Define the chart as an output variable - option for density plot or histogram
   output$t1_chart <- renderPlot({
     if (input$plot_type == "density") {
@@ -183,7 +185,7 @@ shinyServer(function(input, output, session) {
   
   #table showing the data of the matched schools
   output$t1_data_table <-  DT::renderDataTable({
-      matched_schools() %>%
+    matched_schools() %>%
       mutate(Value = matched_schools()[[input$t1_measures]]) %>% 
       mutate(`School Name` = paste("<a href='https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/",
                                    URN, "' target='_blank'",">", `School Name`, "</a>", sep = "")) %>%
@@ -204,7 +206,7 @@ shinyServer(function(input, output, session) {
     paste("Number of schools in comparison is", nrow(matched_schools()))
   })
   
-
+  
   
   #text saying value of selected measure for selected school
   output$t1_school_ID_value <- renderText({
@@ -230,23 +232,23 @@ shinyServer(function(input, output, session) {
     paste("The median for the group you have selected is",
           median(matched_schools()[[input$t1_measures]], na.rm = TRUE))
   })
-
+  
   ##tab 1 Dialog box###----------------------------------------------------------------------------------------------------------------
-
-    #dropdpwn for measures for report
-    output$t1_report_measures <- renderUI({
-      selectizeInput(
-        inputId = "t1_report_measures", 
-        label = "Select Measure:",
-        choices = list("Staff Numbers" = colnames(Data)[11:27],
-                       "Staff Characteristics" = colnames(Data)[28:31],
-                       "Staff Pay" = list(colnames(Data)[32]),
-                       "Teacher Absence" = list(colnames(Data)[33])),
-        multiple = TRUE
-      )
+  
+  #dropdpwn for measures for report
+  output$t1_report_measures <- renderUI({
+    selectizeInput(
+      inputId = "t1_report_measures", 
+      label = "Select Measure:",
+      choices = list("Staff Numbers" = colnames(Data)[11:27],
+                     "Staff Characteristics" = colnames(Data)[28:31],
+                     "Staff Pay" = list(colnames(Data)[32]),
+                     "Teacher Absence" = list(colnames(Data)[33])),
+      multiple = TRUE
+    )
   })
   
-    
+  
   ##tab 1 Report###----------------------------------------------------------------------
   
   #download report
@@ -298,7 +300,7 @@ shinyServer(function(input, output, session) {
       session = session, 
       inputId = 't2_Schools',
       choices = Data$ID[Data$`School Phase` == Data$`School Phase`[Data$ID == input$t1_School_ID] & 
-                           Data$ID != input$t1_School_ID],
+                          Data$ID != input$t1_School_ID],
       server = TRUE)
   })
   
@@ -330,7 +332,7 @@ shinyServer(function(input, output, session) {
   #bar chat of selected schools
   output$t2_chart <- renderPlot({
     req(input$t2_measures)
-
+    
     ggplot(data = rbind(selected_schools(), t2_selected_ID())) +
       geom_bar(mapping = aes(
         x = reorder(ID, get(input$t2_measures)),
@@ -344,7 +346,7 @@ shinyServer(function(input, output, session) {
       ylab(input$t2_measures) + 
       theme_bw()
   })
-
+  
   ##tab 2 Dialog box###----------------------------------------------------------------------------------------------------------------
   
   #dropdpwn for measures for report
@@ -358,9 +360,9 @@ shinyServer(function(input, output, session) {
                      "Teacher Absence" = list(colnames(Data)[33])),
       multiple = TRUE)
   })
-
- ##tab 2 Report###----------------------------------------------------------------------
-
+  
+  ##tab 2 Report###----------------------------------------------------------------------
+  
   #download report
   output$t2_report <- downloadHandler(
     filename = "report2.docx",
@@ -370,14 +372,14 @@ shinyServer(function(input, output, session) {
       # can happen when deployed).
       t2_tempReport <- file.path(tempdir(), "R/t2_Report.Rmd")
       file.copy("t2_Report.Rmd", t2_tempReport, overwrite = TRUE)
-  
+      
       # Set up parameters to pass to Rmd document
       params <- list(
         t2_measures = input$t2_report_measures,
         t2_matched = selected_schools(),
         t2_selected = t2_selected_ID()
       )
-  
+      
       # Knit the document, passing in the `params` list, and eval it in a
       # child of the global environment (this isolates the code in the document
       # from the code in this app).
@@ -387,7 +389,7 @@ shinyServer(function(input, output, session) {
       )
     }
   )
-
+  
   #stop app running when closed in browser
   session$onSessionEnded(function() { stopApp() })
   
