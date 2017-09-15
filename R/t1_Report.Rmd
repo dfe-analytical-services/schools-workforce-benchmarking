@@ -13,7 +13,9 @@ params:
 ```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6.5}
 
 #loop through each deployment measure, chart and statements
+
 for (i in params$measures) {
+
 cat('\n') #start new line 
 cat("#",i, "\n")
 

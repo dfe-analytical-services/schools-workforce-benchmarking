@@ -108,3 +108,4 @@ fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
     ylab(plot_measure) + 
     theme_bw()
 }
+
