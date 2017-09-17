@@ -12,19 +12,6 @@ params:
 for (i in params$t2_measures){
 cat('\n')  
 cat("#",i, "\n")
-print(
-ggplot(data = rbind(params$t2_matched, params$t2_selected)) +
-      geom_bar(mapping = aes(
-        x = reorder(ID, get(i)),
-        y = get(i),
-        fill = color), 
-        stat = "identity") + 
-      scale_fill_manual(values = c("#9fb9c8","#104f75")) +
-      guides(fill = FALSE) +
-      coord_flip() + 
-      xlab("School") + 
-      ylab(i) + 
-      theme_bw()
-)
+print(fn_chart2(params$t2_matched, params$t2_selected, i))
 cat('\n') 
 }

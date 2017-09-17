@@ -1,6 +1,5 @@
 library(tidyverse)
 
-
 # This following funciton is used to generate a subset of schools via the selected school ID
 # and the characteristics selected.
 
@@ -66,3 +65,47 @@ fn_match_schools <- function(dataset,
   selected_phase_data
   
 }
+
+# The following is a function that creates chart 1
+
+fn_chart1 <- function(matched_dataset, selected_dataset, plot_measure, plot_type){
+  if (plot_type == "density") {
+    ggplot() + 
+      geom_density(data = matched_dataset,
+                   mapping = aes(x = get(plot_measure)),
+                   na.rm = TRUE) +
+      #red dashed line showing the selected school
+      geom_vline(data = selected_dataset,aes(xintercept = get(plot_measure)), 
+                 colour = "red", linetype = "dashed",
+                 na.rm = TRUE) +
+      xlab(plot_measure) + theme_bw()
+    
+  } else if (plot_type == "histogram") {
+    ggplot() + 
+      geom_histogram(data = matched_dataset,
+                     mapping = aes(x = get(plot_measure)), fill = "#104f75",
+                     na.rm = TRUE, bins = 30) +
+      geom_vline(data = selected_dataset,aes(xintercept = get(plot_measure)), 
+                 colour = "red", linetype = "dashed",
+                 na.rm = TRUE) +
+      xlab(plot_measure) + theme_bw()
+  }
+}
+
+# The following is a function that creates chart 2
+
+fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
+  ggplot(data = rbind(comp_dataset, selected_dataset)) +
+    geom_bar(mapping = aes(
+      x = reorder(ID, get(plot_measure)),
+      y = get(plot_measure),
+      fill = color), 
+      stat = "identity") + 
+    scale_fill_manual(values = c("#9fb9c8","#104f75")) +
+    guides(fill = FALSE) +
+    coord_flip() + 
+    xlab("School") + 
+    ylab(plot_measure) + 
+    theme_bw()
+}
+

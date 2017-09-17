@@ -1,7 +1,5 @@
 #server.R
 
-#this is essentially how the app is built
-
 #Load Required Packages ----------------------------------------------------------------------
 
 library(tidyverse)
@@ -23,10 +21,11 @@ Data[11:33] <- lapply(Data[,11:33], as.numeric)
 Data$ID <- paste(Data$URN,' - ', Data$`School Name`, sep = '')
 
 #list of school characteristics and what school phase they relate to
-characteristics_dd <- read_csv("Data/Characteristics.csv") 
+characteristics_dd <- read_csv("Data/Characteristics.csv", col_types = cols(.default = "c")) 
 
 #list of characteristics and their type of match for comparisons
-characteristics_match <- read_csv("Data/characteristics_match.csv")
+
+characteristics_match <- read_csv("Data/characteristics_match.csv", col_types = cols(.default = "c"))
 
 #define server logic -------------------------------------------------------------------------
 
@@ -160,27 +159,9 @@ shinyServer(function(input, output, session) {
   
   # Define the chart as an output variable - option for density plot or histogram
   output$t1_chart <- renderPlot({
-    if (input$plot_type == "density") {
-      ggplot() + 
-        geom_density(data = matched_schools(),
-                     mapping = aes(x = get(input$t1_measures)),
-                     na.rm = TRUE) +
-        #red dashed line showing the selected school
-        geom_vline(data = t1_selected_ID(),aes(xintercept = get(input$t1_measures)), 
-                   colour = "red", linetype = "dashed",
-                   na.rm = TRUE) +
-        xlab(input$t1_measures) + theme_bw()
-      
-    } else if (input$plot_type == "histogram") {
-      ggplot() + 
-        geom_histogram(data = matched_schools(),
-                       mapping = aes(x = get(input$t1_measures)), fill = "#104f75",
-                       na.rm = TRUE, bins = 30) +
-        geom_vline(data = t1_selected_ID(),aes(xintercept = get(input$t1_measures)), 
-                   colour = "red", linetype = "dashed",
-                   na.rm = TRUE) +
-        xlab(input$t1_measures) + theme_bw()
-    }
+    
+    fn_chart1(matched_schools(), t1_selected_ID(), input$t1_measures, input$plot_type)
+
   })
   
   #table showing the data of the matched schools
@@ -258,7 +239,7 @@ shinyServer(function(input, output, session) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
-      tempReport <- file.path(tempdir(), "R/t1_Report.Rmd")
+      tempReport <- file.path(tempdir(), "t1_Report.Rmd")
       file.copy("R/t1_Report.Rmd", tempReport, overwrite = TRUE)
       
       # Set up parameters to pass to Rmd document
@@ -332,19 +313,9 @@ shinyServer(function(input, output, session) {
   #bar chat of selected schools
   output$t2_chart <- renderPlot({
     req(input$t2_measures)
+
+    fn_chart2(selected_schools(), t2_selected_ID(), input$t2_measures)
     
-    ggplot(data = rbind(selected_schools(), t2_selected_ID())) +
-      geom_bar(mapping = aes(
-        x = reorder(ID, get(input$t2_measures)),
-        y = get(input$t2_measures),
-        fill = color), 
-        stat = "identity") + 
-      scale_fill_manual(values = c("#9fb9c8","#104f75")) +
-      guides(fill = FALSE) +
-      coord_flip() + 
-      xlab("School") + 
-      ylab(input$t2_measures) + 
-      theme_bw()
   })
   
   ##tab 2 Dialog box###----------------------------------------------------------------------------------------------------------------
@@ -370,8 +341,9 @@ shinyServer(function(input, output, session) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
-      t2_tempReport <- file.path(tempdir(), "R/t2_Report.Rmd")
-      file.copy("t2_Report.Rmd", t2_tempReport, overwrite = TRUE)
+
+      t2_tempReport <- file.path(tempdir(), "t2_Report.Rmd")
+      file.copy("R/t2_Report.Rmd", t2_tempReport, overwrite = TRUE)
       
       # Set up parameters to pass to Rmd document
       params <- list(
