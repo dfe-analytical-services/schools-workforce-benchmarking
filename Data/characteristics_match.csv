@@ -10,17 +10,17 @@ Selective?,Exact
 Religious,Exact
 Post-16?,Exact
 Number of pupils (FTE),Percentage
-% pupils with SEN support,Percentage point
-% pupils eligible for FSM,Percentage point
-% Non White pupils (including unclassified),Percentage point
-% pupils with English not as First Language,Percentage point
-Overall Absence Rate %,Percentage point
-% pupils that achieved expected for RWM,Percentage point
-% pupils that achieved high for RWM,Percentage point
-KS4 Value Added Progress 8,Percentage point
-KS5 Value Added A Level,Percentage point
-KS5 Value Added Academic,Percentage point
-KS5 Value Added Applied General,Percentage point
+% pupils with SEN support,Percentage point 1
+% pupils eligible for FSM,Percentage point 1
+% Non White pupils (including unclassified),Percentage point 1
+% pupils with English not as First Language,Percentage point 1
+Overall Absence Rate %,Percentage point 1
+% pupils that achieved expected for RWM,Percentage point 1
+% pupils that achieved high for RWM,Percentage point 1
+KS4 Value Added Progress 8,Percentage point 2
+KS5 Value Added A Level,Percentage point 2
+KS5 Value Added Academic,Percentage point 2
+KS5 Value Added Applied General,Percentage point 2
 Ofsted Overall Effectiveness,Exact
 Ofsted Quality of Teaching,Exact
 Ofsted Leadership and Management,Exact

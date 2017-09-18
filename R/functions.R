@@ -34,23 +34,33 @@ fn_match_schools <- function(dataset,
       filter(Characteristic_Label == i) %>%
       select(Match_type) %>%
       as.character()
-    
+   
     #If numerical then apply 10 percentage tollearance
     if (type == "Percentage") {
       selected_phase_data <-
         filter(
           selected_phase_data,
-          get(i) > as.numeric(measure_value) * 0.9,
-          get(i) < as.numeric(measure_value) * 1.1
+          as.numeric(get(i)) > as.numeric(measure_value) * 0.9,
+          as.numeric(get(i)) < as.numeric(measure_value) * 1.1
         )
     }
-    #If percentage then apply +- 0.1 percentage point tollerance
-    else if (type == "Percentage point") {
+    #If percentage then apply +- 10 percentage point tollerance
+    else if (type == "Percentage point 1") {
       selected_phase_data <-
         filter(
           selected_phase_data,
-          get(i) > as.numeric(measure_value) - 0.1,
-          get(i) < as.numeric(measure_value) + 0.1
+          as.numeric(get(i)) > as.numeric(measure_value) - 10,
+          as.numeric(get(i)) < as.numeric(measure_value) + 10
+        )
+    }
+    
+    #If Value Added then apply +- 0.1 percentage point tollerance
+    else if (type == "Percentage point 2") {
+      selected_phase_data <-
+        filter(
+          selected_phase_data,
+          as.numeric(get(i)) > as.numeric(measure_value) - 0.1,
+          as.numeric(get(i)) < as.numeric(measure_value) + 0.1
         )
     }
     #Exact match for categorical variables

@@ -27,6 +27,15 @@ characteristics_dd <- read_csv("Data/Characteristics.csv", col_types = cols(.def
 
 characteristics_match <- read_csv("Data/characteristics_match.csv", col_types = cols(.default = "c"))
 
+measure_groupings <- list("Staff Headcount" = colnames(Data)[5:12],
+     "Staff FTE" = colnames(Data)[13:21],
+     "Teacher Characteristics" = colnames(Data)[22:26],
+     "Teaching Assistant Characteristics" = colnames(Data)[27:29],
+     "Non-classroom based Support Staff Characteristics" = colnames(Data)[30:31],
+     "Auxiliary Staff Characteristics" = colnames(Data)[32:33],
+     "Staff Pay" = colnames(Data)[34:37],
+     "Teacher Absence" = colnames(Data)[38:41])
+
 #define server logic -------------------------------------------------------------------------
 
 shinyServer(function(input, output, session) {
@@ -107,10 +116,7 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       inputId = "t1_measures", 
       label = "Select Measure:",
-      choices = list("Staff Numbers" = colnames(Data)[5:21],
-                     "Staff Characteristics" = colnames(Data)[22:33],
-                     "Staff Pay" = colnames(Data)[34:37],
-                     "Teacher Absence" = colnames(Data)[38:41])
+      choices = measure_groupings
     )  
   })
   
@@ -221,10 +227,7 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       inputId = "t1_report_measures", 
       label = "Select Measure:",
-      choices = list("Staff Numbers" = colnames(Data)[5:21],
-                     "Staff Characteristics" = colnames(Data)[22:33],
-                     "Staff Pay" = colnames(Data)[34:37],
-                     "Teacher Absence" = colnames(Data)[38:41]),
+      choices = measure_groupings,
       multiple = TRUE
     )
   })
@@ -291,10 +294,7 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       inputId = "t2_measures", 
       label = "Select Measure:",
-      choices = list("Staff Numbers" = colnames(Data)[5:21],
-                     "Staff Characteristics" = colnames(Data)[22:33],
-                     "Staff Pay" = colnames(Data)[34:37],
-                     "Teacher Absence" = colnames(Data)[38:41])
+      choices = measure_groupings
     )
   }) 
   
@@ -325,10 +325,7 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       inputId = "t2_report_measures", 
       label = "Select Measure:",
-      choices = list("Staff Numbers" = colnames(Data)[5:21],
-                     "Staff Characteristics" = colnames(Data)[22:33],
-                     "Staff Pay" = colnames(Data)[34:37],
-                     "Teacher Absence" = colnames(Data)[38:41]),
+      choices = measure_groupings,
       multiple = TRUE)
   })
   
