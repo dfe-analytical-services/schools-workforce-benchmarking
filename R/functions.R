@@ -104,7 +104,7 @@ fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
     scale_fill_manual(values = c("#9fb9c8","#104f75")) +
     guides(fill = FALSE) +
     coord_flip() + 
-    xlab("School") + 
+    xlab("Schools") + 
     ylab(plot_measure) + 
     theme_bw()
 }

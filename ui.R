@@ -40,7 +40,7 @@ shinyUI(
           #dropdown to select school ID/URN
             selectizeInput(
               't1_School_ID',
-              label = "Enter Schol URN or Name (Type to Search):",
+              label = "Enter School URN or Name (Type to Search):",
               choices = NULL
             ),
           #button to submit school ID and make tabs in navigation bar appear

@@ -5,7 +5,6 @@ Local Authority,Exact
 Local Authority District,Exact
 Rurality,Exact
 Deprivation (IMD score),Percentage
-Coastal?,Exact
 School Type,Exact
 Selective?,Exact
 Religious,Exact
@@ -13,9 +12,9 @@ Post-16?,Exact
 Number of pupils (FTE),Percentage
 % pupils with SEN support,Percentage point
 % pupils eligible for FSM,Percentage point
-% Non White pupils,Percentage point
+% Non White pupils (including unclassified),Percentage point
 % pupils with English not as First Language,Percentage point
-% pupils absent (based on 5 half terms),Percentage point
+Overall Absence Rate %,Percentage point
 % pupils that achieved expected for RWM,Percentage point
 % pupils that achieved high for RWM,Percentage point
 KS4 Value Added Progress 8,Percentage point
