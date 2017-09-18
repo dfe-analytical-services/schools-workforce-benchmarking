@@ -15,7 +15,7 @@ Data[Data == 'SUPP'] <- NA
 Data[Data == "DNS"] <- NA
 
 #Set variables to numeric for plotting
-Data[11:33] <- lapply(Data[,11:33], as.numeric)
+Data[5:41] <- lapply(Data[,5:41], as.numeric)
 
 #Create custom id column
 Data$ID <- paste(Data$URN,' - ', Data$`School Name`, sep = '')
@@ -26,6 +26,15 @@ characteristics_dd <- read_csv("Data/Characteristics.csv", col_types = cols(.def
 #list of characteristics and their type of match for comparisons
 
 characteristics_match <- read_csv("Data/characteristics_match.csv", col_types = cols(.default = "c"))
+
+measure_groupings <- list("Staff Headcount" = colnames(Data)[5:12],
+     "Staff FTE" = colnames(Data)[13:21],
+     "Teacher Characteristics" = colnames(Data)[22:26],
+     "Teaching Assistant Characteristics" = colnames(Data)[27:29],
+     "Non-classroom based Support Staff Characteristics" = colnames(Data)[30:31],
+     "Auxiliary Staff Characteristics" = colnames(Data)[32:33],
+     "Staff Pay" = colnames(Data)[34:37],
+     "Teacher Absence" = colnames(Data)[38:41])
 
 #define server logic -------------------------------------------------------------------------
 
@@ -107,10 +116,7 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       inputId = "t1_measures", 
       label = "Select Measure:",
-      choices = list("Staff Numbers" = colnames(Data)[11:27],
-                     "Staff Characteristics" = colnames(Data)[28:31],
-                     "Staff Pay" = list(colnames(Data)[32]),
-                     "Teacher Absence" = list(colnames(Data)[33]))
+      choices = measure_groupings
     )  
   })
   
@@ -175,7 +181,7 @@ shinyServer(function(input, output, session) {
   
   #table showing the characteristics of the selected school ID
   output$t1_characteristics_table <-  DT::renderDataTable({
-    df <- data.frame(Characteristic = colnames(t1_selected_ID()[1,34:59]), Value = t(t1_selected_ID()[1,34:59]))
+    df <- data.frame(Characteristic = colnames(t1_selected_ID()[1,42:66]), Value = t(t1_selected_ID()[1,42:66]))
     phase_characteristics <- characteristics_dd$Characteristic_Label[characteristics_dd$Type ==  Data$`School Phase`[Data$ID == input$t1_School_ID]]
     row.names(df) <- NULL
     df <- filter(df, Characteristic %in% phase_characteristics)
@@ -221,10 +227,7 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       inputId = "t1_report_measures", 
       label = "Select Measure:",
-      choices = list("Staff Numbers" = colnames(Data)[11:27],
-                     "Staff Characteristics" = colnames(Data)[28:31],
-                     "Staff Pay" = list(colnames(Data)[32]),
-                     "Teacher Absence" = list(colnames(Data)[33])),
+      choices = measure_groupings,
       multiple = TRUE
     )
   })
@@ -291,10 +294,7 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       inputId = "t2_measures", 
       label = "Select Measure:",
-      choices = list("Staff Numbers" = colnames(Data)[11:27],
-                     "Staff Characteristics" = colnames(Data)[28:31],
-                     "Staff Pay" = list(colnames(Data)[32]),
-                     "Teacher Absence" = list(colnames(Data)[33]))
+      choices = measure_groupings
     )
   }) 
   
@@ -325,10 +325,7 @@ shinyServer(function(input, output, session) {
     selectizeInput(
       inputId = "t2_report_measures", 
       label = "Select Measure:",
-      choices = list("Staff Numbers" = colnames(Data)[11:27],
-                     "Staff Characteristics" = colnames(Data)[28:31],
-                     "Staff Pay" = list(colnames(Data)[32]),
-                     "Teacher Absence" = list(colnames(Data)[33])),
+      choices = measure_groupings,
       multiple = TRUE)
   })
   

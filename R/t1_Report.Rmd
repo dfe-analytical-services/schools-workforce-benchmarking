@@ -34,7 +34,7 @@ cat(paste("The range for the group you have selected is",
          min(params$matched[[i]], na.rm = TRUE), "to", 
         max(params$matched[[i]], na.rm = TRUE)),'\n')
 cat('\n')
-cat(paste("The average for the group you have selected is",
+cat(paste("The mean average for the group you have selected is",
          round(mean(params$matched[[i]], na.rm = TRUE),1)),'\n')
 cat('\n')
 cat(paste("The median for the group you have selected is",
