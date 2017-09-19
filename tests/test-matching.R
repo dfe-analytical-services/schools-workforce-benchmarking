@@ -6,9 +6,9 @@ source('R/functions.R')
 
 # Load in data for tests
 
-dataset <- read_csv('Data/deploy_sfr_2016.csv')
+dataset <- read_csv("Data/deploy_sfr_2016.csv",  col_types = cols(.default = "c"))
 
-characteristics_match <- read_csv("Data/characteristics_match.csv")
+characteristics_match <- read_csv("Data/characteristics_match.csv", col_types = cols(.default = "c"))
 
 # Clean as per server
 
@@ -16,7 +16,7 @@ characteristics_match <- read_csv("Data/characteristics_match.csv")
 dataset[dataset == 'SUPP'] <- NA
 dataset[dataset == "DNS"] <- NA
 
-dataset[11:33] <- lapply(dataset[,11:33], as.numeric)
+dataset[5:41] <- lapply(dataset[,5:41], as.numeric)
 
 dataset$ID <- paste(dataset$URN,' - ', dataset$`School Name`, sep = '')
 
