@@ -20,7 +20,7 @@ The application allows you to do the following:
 
 To run the project on your machine you need to do the following:
 
-1. Clone the repo
+1. Clone the repo.
 
 `git clone https://github.com/DFEAGILEDEVOPS/schools-workforce-benchmarking.git`
 
