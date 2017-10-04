@@ -20,8 +20,10 @@
   });
 
 //Track measure inputted on similar schools tab  
-  $(document).on('change', '.checkbox', function(e) {
-    ga('send', 'event', 'widget', 'select t1 checkbox');
+  $(document).on('change', '#t1_characteristics :checkbox', function(e) {
+      if(this.checked) {
+        ga('send', 'event', 'widget', 'select t1 checkbox', $(e.currentTarget).val());
+    }
   });
 
 //Track measure inputted on school to school tab  
@@ -31,7 +33,7 @@
   
 //Track similar schools report  
   $(document).on('click', '#t1_report', function() {
-    ga('send', 'event', 'widget', 'generate similar schools report')
+    ga('send', 'event', 'widget', 'generate similar schools report');
   });
 
 //Track similar schools report  
