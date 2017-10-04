@@ -10,8 +10,8 @@
   ga('send', 'pageview');
 
 //Track school name  
-  $(document).on('change', '#t1_School_ID', function(e) {
-    ga('send', 'event', 'widget', 'select school', $(e.currentTarget).val());
+  $(document).on('click', '#submit_t1_School_ID', function(e) {
+    ga('send', 'event', 'widget', 'select school', $("#t1_School_ID").val());
   });
 
 //Track measure inputted on similar schools tab  
@@ -19,9 +19,45 @@
     ga('send', 'event', 'widget', 'select t1 measures', $(e.currentTarget).val());
   });
 
+//Track measure inputted on similar schools tab  
+  $(document).on('change', '.checkbox', function(e) {
+    ga('send', 'event', 'widget', 'select t1 checkbox');
+  });
+
 //Track measure inputted on school to school tab  
   $(document).on('change', '#t2_measures', function(e) {
     ga('send', 'event', 'widget', 'select t2 measures', $(e.currentTarget).val());
   });
   
+//Track similar schools report  
+  $(document).on('click', '#t1_report', function() {
+    ga('send', 'event', 'widget', 'generate similar schools report')
+  });
+
+//Track similar schools report  
+//  $(document).on('click', '#t1_report', function() {
+//    ga('send', 'event', 'widget', 'generate similar schools report', //$("#t1_report_measures").val());
+//  });
+
+//Checkbox attempts
+
+//$('t1_characteristics').each(function(){
+//  if($(this).is(':checked')){ 
+//    ga('send', 'event', 'widget', 'a', $(this).val()); // 
+//  }
+//});
+
+//$(document).ready(function(){
+//$('t1_characteristics').each(function(){
+//  if($('#t1_characteristics').is(':checked')){ 
+//    ga('send', 'event', 'widget', 'a', $('#t1_characteristics').val());
+//  }
+//})
+//});
+
+//$("#t1_characteristics").click(function() {
+//  if ($(this).is(":checked")) {
+//    ga('send', 'event', 'widget', 'a', $('#t1_characteristics').val());
+//  }
+//});
 
