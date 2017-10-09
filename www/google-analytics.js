@@ -25,7 +25,21 @@
 //Works
   $(document).on('change', '#t1_measures', function(e) {
     ga('send', 'event', 'widget', 'select t1 measures', $(e.currentTarget).val());
+    
+  
   });
+
+//Track plot type
+//Works!
+$(document).on('change', '#plot_type :radio', function(e) {
+  if(this.checked && this.value == 'density'){
+      ga('send', 'event', 'widget', 'select plot type', $(e.currentTarget).val());
+    } 
+  else if(this.checked && this.value == 'histogram'){
+      ga('send', 'event', 'widget', 'select plot type', $(e.currentTarget).val());
+    }
+  });
+
 
 
 
@@ -41,7 +55,7 @@
 //Track similar schools report
 //work but measures don't come up
   $(document).on('click', '#t1_report', function() {
-    ga('send', 'event', 'widget', 'generate similar schools report',$("#t1_report_measures").val());
+    ga('send', 'event', 'widget', 'generate similar schools report');
   });
 
 
@@ -54,9 +68,9 @@
   });
 
 //Track schools inputted on school to school tab  
-//Doesn't work at all
-  $(document).on('change', '#t2_Schools', function(e) {
-    ga('send', 'event', 'widget', 'select t2 schools', $(e.currentTarget).val());
+//Works but measures won't come up
+  $(document).on('change', '#t2_Schools', function() {
+    ga('send', 'event', 'widget', 'select t2 schools', $('#t2_Schools').val());
   });
   
 //Track school to school report 
