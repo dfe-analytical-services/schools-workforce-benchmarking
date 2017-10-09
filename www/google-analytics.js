@@ -58,6 +58,16 @@ $(document).on('change', '#plot_type :radio', function(e) {
     ga('send', 'event', 'widget', 'generate similar schools report');
   });
 
+//Track report plot type
+$(document).on('change', '#report_plot_type :radio', function(e) {
+  if(this.checked && this.value == 'density'){
+      ga('send', 'event', 'widget', 'select plot type', $(e.currentTarget).val());
+    } 
+  else if(this.checked && this.value == 'histogram'){
+      ga('send', 'event', 'widget', 'select plot type', $(e.currentTarget).val());
+    }
+  });
+
 
 //School to School tab
 
