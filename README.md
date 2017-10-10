@@ -16,7 +16,7 @@ The application allows you to do the following:
 4. Compare measures for individual schools against one another
 5. Generate reports with multiple variables for sharing
 
-## Running the project
+## Running the project with RStudio
 
 To run the project on your machine you need to do the following:
 
@@ -33,3 +33,19 @@ To run the project on your machine you need to do the following:
 `Packrat bootstrap successfully completed. Restarting R and entering packrat mode...`
    
 5. Open the UI.R or Server.R file and hit Run App.    
+
+## Running the project with Docker
+
+Build with Docker: 
+
+```
+# username can be anything. helps to be your hub.docker.com id so you can publish with docker push
+docker build -t username/schools-workforce-benchmarking .
+```
+
+Run what you built: 
+
+```
+# here you use the tag with your username in it that you built locally. 
+docker run -p 80:80  username/schools-workforce-benchmarking:latest
+```
