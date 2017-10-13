@@ -16,6 +16,8 @@ Data[Data == "DNS"] <- NA
 
 #Set variables to numeric for plotting
 Data[5:41] <- lapply(Data[,5:41], as.numeric)
+Data[47] <- lapply(Data[,47], as.numeric)
+Data[52:63] <- lapply(Data[,52:63], as.numeric)
 
 #Create custom id column
 Data$ID <- paste(Data$URN,' - ', Data$`School Name`, sep = '')

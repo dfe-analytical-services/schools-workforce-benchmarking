@@ -29,19 +29,22 @@ fn_match_schools <- function(dataset,
       select(i) %>%
       as.character()
     
+    
     # Get typpe of measure to work out which filter to apply
     type <- characteristics_lookup %>%
       filter(Characteristic_Label == i) %>%
       select(Match_type) %>%
       as.character()
+    
+    tolerance <- 1e-10
    
     #If numerical then apply 10 percentage tollearance
     if (type == "Percentage") {
       selected_phase_data <-
         filter(
           selected_phase_data,
-          as.numeric(get(i)) > as.numeric(measure_value) * 0.9,
-          as.numeric(get(i)) < as.numeric(measure_value) * 1.1
+          get(i) > as.numeric(measure_value) * 0.9,
+          get(i) < as.numeric(measure_value) * 1.1
         )
     }
     #If percentage then apply +- 10 percentage point tollerance
@@ -49,18 +52,19 @@ fn_match_schools <- function(dataset,
       selected_phase_data <-
         filter(
           selected_phase_data,
-          as.numeric(get(i)) > as.numeric(measure_value) - 10,
-          as.numeric(get(i)) < as.numeric(measure_value) + 10
+          get(i) > as.numeric(measure_value) - 10,
+          get(i) < as.numeric(measure_value) + 10
         )
     }
+    
     
     #If Value Added then apply +- 0.1 percentage point tollerance
     else if (type == "Percentage point 2") {
       selected_phase_data <-
         filter(
           selected_phase_data,
-          as.numeric(get(i)) > as.numeric(measure_value) - 0.1,
-          as.numeric(get(i)) < as.numeric(measure_value) + 0.1
+          get(i) - tolerance > as.numeric(measure_value) - 0.1,
+          get(i) + tolerance < as.numeric(measure_value) + 0.1
         )
     }
     #Exact match for categorical variables
@@ -73,7 +77,7 @@ fn_match_schools <- function(dataset,
   
   #Return the filtered dataset
   selected_phase_data
-  
+
 }
 
 # The following is a function that creates chart 1
