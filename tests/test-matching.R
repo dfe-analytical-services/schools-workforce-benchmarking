@@ -4,34 +4,41 @@ context("Matching function")
 
 source('R/functions.R')
 
-# Load in data for tests
+#Load in core data  ------------------------------------------------------------------------
 
-dataset <- read_csv("Data/deploy_sfr_2016.csv",  col_types = cols(.default = "c"))
+Data <- read_csv("Data/deploy_sfr_2016.csv",  col_types = cols(.default = "c"))
 
+#Set SUPP and DNS to NA
+Data[Data == 'SUPP'] <- NA
+Data[Data == "DNS"] <- NA
+
+#Set variables to numeric for plotting
+Data[5:41] <- lapply(Data[,5:41], as.numeric)
+Data[47] <- lapply(Data[,47], as.numeric)
+Data[52:63] <- lapply(Data[,52:63], as.numeric)
+
+#Create custom id column
+Data$ID <- paste(Data$URN,' - ', Data$`School Name`, sep = '')
+
+# Load in Characteristics type -------------------------------------------------------------
 characteristics_match <- read_csv("Data/characteristics_match.csv", col_types = cols(.default = "c"))
 
-# Clean as per server
+# Load in test data ------------------------------------------------------------------------
 
-#Added this in to remove the SUPP measures until we decide what to do with them.
-dataset[dataset == 'SUPP'] <- NA
-dataset[dataset == "DNS"] <- NA
+test_data <- read_csv("tests/data/subset_test_data.csv", col_types = cols(.default = "c")) %>%
+  mutate(number_schls = as.numeric(number_schls))
 
-dataset[5:41] <- lapply(dataset[,5:41], as.numeric)
+# Run tests --------------------------------------------------------------------------------
 
-dataset$ID <- paste(dataset$URN,' - ', dataset$`School Name`, sep = '')
-
-# Run tests
-
-test_that("City of London Primary returns 1 school", {
-  
-  temp <- fn_match_schools(dataset, 
-                           "100000 - Sir John Cass's Foundation Primary School",
-                           c("Local Authority"),
-                           characteristics_match)
-  
-  expect_equal(nrow(temp), 1)
-  
-})
-
-
-
+for (i in 1:nrow(test_data)){
+  test_that(paste(test_data$URN[i], "-", test_data$characteristics[i]), {
+    
+    temp <- fn_match_schools(Data, 
+                             Data$ID[Data$URN == test_data$URN[i]],
+                             test_data$characteristics[i],
+                             characteristics_match)
+    
+    expect_equal(nrow(temp), test_data$number_schls[i])
+    
+  })
+}
