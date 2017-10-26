@@ -6,7 +6,7 @@
   a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-107125936-3', 'auto');
+  ga('create', 'UA-108704572-1', 'auto');
   ga('send', 'pageview');
 
 
