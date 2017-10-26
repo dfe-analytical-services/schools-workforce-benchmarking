@@ -22,5 +22,7 @@ deploy:
   provider: script
   script: 
   - R -f deploy.R
+  skip_cleanup: true
   on: 
-    branch: feature/continuous_deployment
+    branch: master
+    repo: DFEAGILEDEVOPS/schools-workforce-benchmarking
