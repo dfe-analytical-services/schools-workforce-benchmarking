@@ -1,4 +1,5 @@
 language: r
+sudo: required
 before_install:
 - sudo mkdir -p /usr/lib/R/library
 - echo 'R_LIBS=/usr/lib/R/library:/usr/lib/R/site-library/' > ~/.Renviron
@@ -17,3 +18,9 @@ addons:
   sauce_connect:
     username: "$SAUCE_USERNAME"
     access_key: "$SAUCE_SECRET_KEY"
+deploy:
+  provider: script
+  script: 
+  - R -f deploy.R
+  on: 
+    branch: feature/continuous_deployment
