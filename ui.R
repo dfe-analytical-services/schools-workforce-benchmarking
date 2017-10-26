@@ -19,7 +19,9 @@ shinyUI(
   fluidPage(
     useShinyjs(), 
   #Hide navbar until button is pressed.
-    tags$head(tags$script(src = "effects.js")
+    tags$head(
+	tags$script(src = "effects.js"),
+	tags$script(src = "google-analytics.js")
     ),
   
   #create a page with navigation bar at the top
