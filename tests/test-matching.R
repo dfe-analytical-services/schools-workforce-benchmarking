@@ -20,7 +20,7 @@ for (i in 1:nrow(test_data)){
     
     temp <- fn_match_schools(Data, 
                              Data$ID[Data$URN == test_data$URN[i]],
-                             test_data$characteristics[i],
+                             unlist(strsplit(test_data$characteristics[i], ", ")),
                              characteristics_match)
     
     expect_equal(nrow(temp), test_data$number_schls[i])
