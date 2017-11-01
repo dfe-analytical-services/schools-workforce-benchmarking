@@ -96,9 +96,10 @@ shinyUI(
               width = 195
             ),
             br(),
-            p("If you have any comments or feedback, please email", 
-              a("Schoolsworkforce.BENCHMARKING@education.gov.uk", 
-                href = "mailto:Schoolsworkforce.BENCHMARKING@education.gov.uk"))
+            p("If you would like to provide feedback on your experience using the tool, 
+              please fill out our survey", 
+              a("here.", 
+                href = "http://www.smartsurvey.co.uk/s/ZAVEJ/"))
             ),
           position = "right"
           )

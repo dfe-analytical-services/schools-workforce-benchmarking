@@ -9,6 +9,7 @@ params:
   selected: NA
   plot_type: NA
   number_of_schools: NA
+  characteristics: NA
 ---
 ```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6.5}
 
@@ -39,6 +40,9 @@ cat(paste("The mean average for the group you have selected is",
 cat('\n')
 cat(paste("The median for the group you have selected is",
          median(params$matched[[i]], na.rm = TRUE)),'\n')
+cat('\n')
+cat(paste(params$characteristics),'\n')
+
 }
 ```
 
