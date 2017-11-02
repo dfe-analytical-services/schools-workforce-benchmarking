@@ -114,12 +114,40 @@ fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
       x = reorder(ID, get(plot_measure)),
       y = get(plot_measure),
       fill = color), 
-      stat = "identity") + 
+      stat = "identity",
+      na.rm = TRUE) + #remove NAs silently
     scale_fill_manual(values = c("#9fb9c8","#104f75")) +
     guides(fill = FALSE) +
     coord_flip() + 
     xlab("Schools") + 
     ylab(plot_measure) + 
-    theme_bw()
+    theme_bw() +
+    geom_text(aes(x = ID, y = get(plot_measure), 
+                  label = get(plot_measure)), #label the values
+              position = position_dodge(.9), hjust=-0.25, na.rm = TRUE)
 }
 
+
+
+#Tried to label the NAs but just get blank
+# ifelse(get(plot_measure) == 0, "",
+#        ifelse(get(plot_measure) > 0, get(plot_measure), "NA"))
+
+#ifelse(is.na(get(plot_measure)), "NA", get(plot_measure))
+
+
+#make it so schools with NAs don't appear in the chart
+# fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
+#   ggplot(data = subset(rbind(comp_dataset, selected_dataset),!is.na(get(plot_measure)))) +
+#     geom_bar(mapping = aes(
+#       x = reorder(ID, get(plot_measure)),
+#       y = get(plot_measure),
+#       fill = color), 
+#       stat = "identity") + 
+#     scale_fill_manual(values = c("#9fb9c8","#104f75")) +
+#     guides(fill = FALSE) +
+#     coord_flip() + 
+#     xlab("Schools") + 
+#     ylab(plot_measure) + 
+#     theme_bw()
+# }
