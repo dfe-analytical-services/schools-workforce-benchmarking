@@ -69,9 +69,9 @@ shinyUI(
               a("School Census,", 
                 href = "https://www.gov.uk/government/statistics/schools-pupils-and-their-characteristics-january-2016",
                 target="_blank"),
-              a("Edubase", href = "http://www.education.gov.uk/edubase/home.xhtml",
+              a("Get Information about Schools", href = "https://get-information-schools.service.gov.uk/",
                 target="_blank"),
-              "and the latest",
+              "and the 2016",
               a("Schools Performance Tables.", href = "https://www.compare-school-performance.service.gov.uk/",
                 target="_blank")
             ),
