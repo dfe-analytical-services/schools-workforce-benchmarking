@@ -124,7 +124,9 @@ fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
     theme_bw() +
     geom_text(aes(x = ID, y = get(plot_measure), 
                   label = get(plot_measure)), #label the values
-              position = position_dodge(.9), hjust=-0.25, na.rm = TRUE)
+              #all values label except for NAs
+              position = position_dodge(.9), hjust=-0.25, #position of values
+              na.rm = TRUE)
 }
 
 
