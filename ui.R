@@ -63,13 +63,17 @@ shinyUI(
             ), 
             p("The data in this tool is drawn from the 2016", 
               a("School Workforce Census,", 
-                href = "https://www.gov.uk/government/collections/statistics-school-workforce"), 
+                href = "https://www.gov.uk/government/collections/statistics-school-workforce",
+                target="_blank"), 
               "the January 2016", 
               a("School Census,", 
-                href = "https://www.gov.uk/government/statistics/schools-pupils-and-their-characteristics-january-2016"),
-              a("Edubase", href = "http://www.education.gov.uk/edubase/home.xhtml"),
+                href = "https://www.gov.uk/government/statistics/schools-pupils-and-their-characteristics-january-2016",
+                target="_blank"),
+              a("Edubase", href = "http://www.education.gov.uk/edubase/home.xhtml",
+                target="_blank"),
               "and the latest",
-              a("Schools Performance Tables.", href = "https://www.compare-school-performance.service.gov.uk/")
+              a("Schools Performance Tables.", href = "https://www.compare-school-performance.service.gov.uk/",
+                target="_blank")
             ),
             h3("Similar Schools"),
             p("This tab allows you to visualise where a school sits on the national distribution for 
