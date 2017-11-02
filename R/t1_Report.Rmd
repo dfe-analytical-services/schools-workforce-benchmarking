@@ -11,7 +11,20 @@ params:
   number_of_schools: NA
   characteristics: NA
 ---
+<br>
+```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE}
+# The selected characteristics
+library(knitr)
+
+data.frame(Characteristics = params$characteristics) %>%
+  kable()
+
+```
+
+<br>
+
 ```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6.5}
+
 
 #loop through each deployment measure, chart and statements
 
@@ -41,7 +54,6 @@ cat('\n')
 cat(paste("The median for the group you have selected is",
          median(params$matched[[i]], na.rm = TRUE)),'\n')
 cat('\n')
-cat(paste(params$characteristics),'\n')
 
 }
 ```
