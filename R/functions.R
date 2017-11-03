@@ -110,14 +110,13 @@ fn_chart1 <- function(matched_dataset, selected_dataset, plot_measure, plot_type
 
 fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
   
-  full_datset <- rbind(comp_dataset, selected_dataset)
-  
-  full_datset  %>% 
+  full_datset <- rbind(comp_dataset, selected_dataset) %>% 
     mutate(labels = ifelse(is.na(get(plot_measure)), "DNS or SUPP", get(plot_measure)),
-           numbers_plot = ifelse(is.na(get(plot_measure)), 0, get(plot_measure))) %>% 
-    ggplot() +
+           numbers_plot = ifelse(is.na(get(plot_measure)), 0, get(plot_measure)))
+  
+  p <- ggplot(full_datset) +
     geom_bar(mapping = aes(
-      x = reorder(ID, get(plot_measure)),
+      x = reorder(ID, numbers_plot),
       y = numbers_plot,
       fill = color), 
       stat = "identity",
@@ -128,12 +127,21 @@ fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
     xlab("Schools") + 
     ylab(plot_measure) + 
     theme_bw() + 
-    scale_y_continuous(expand = c(0,0)) +
     geom_text(aes(x = ID, y = numbers_plot, 
                   label = labels), #label the values
               #all values label except for NAs
               position = position_dodge(.9), hjust=-0.25)
+  
+  if (is.na(max(full_datset$numbers_plot)) | max(full_datset$numbers_plot) == 0) {
+    p + 
+      scale_y_continuous(expand = c(0,0), limits=c(0,1))
+  } else {
+    p
+  }
+
 }
+
+
 # fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
 #   ggplot(data = rbind(comp_dataset, selected_dataset)) +
 #     geom_bar(mapping = aes(
