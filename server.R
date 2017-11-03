@@ -103,7 +103,7 @@ shinyServer(function(input, output, session) {
       similar to you in that characteristic):",
       choices = characteristics_dd$Characteristic_Label[characteristics_dd$Type == Data$`School Phase`[Data$ID == input$t1_School_ID]])
   })
-  
+ 
   #Create reaction to clear check boxes.
   observe({
     if (input$t1_clear > 0) {
@@ -225,7 +225,8 @@ shinyServer(function(input, output, session) {
         plot_type = input$report_plot_type,
         matched = matched_schools(),
         selected = t1_selected_ID(),
-        number_of_schools = input$t1_selected_schools
+        number_of_schools = input$t1_selected_schools,
+        characteristics = input$t1_characteristics
       )
       
       # Knit the document, passing in the `params` list, and eval it in a
