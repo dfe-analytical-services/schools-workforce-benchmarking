@@ -12,6 +12,9 @@ params:
   characteristics: NA
 ---
 <br>
+<br>
+You have chosen to compare on the following characteristics:
+<br>
 ```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE}
 # The selected characteristics
 library(knitr)
