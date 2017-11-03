@@ -1,5 +1,5 @@
 ---
-title: "Comparison of Deployment Measures to Similar Schools"
+title: "Comparison of Workforce Measures to Similar Schools"
 output: 
   word_document
     # reference_docx: word-styles-reference-01.docx  
@@ -9,8 +9,25 @@ params:
   selected: NA
   plot_type: NA
   number_of_schools: NA
+  characteristics: NA
 ---
+<br>
+<br>
+You have chosen to compare on the following characteristics:
+<br>
+```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE}
+# The selected characteristics
+library(knitr)
+
+data.frame(Characteristics = params$characteristics) %>%
+  kable()
+
+```
+
+<br>
+
 ```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6.5}
+
 
 #loop through each deployment measure, chart and statements
 
@@ -39,6 +56,8 @@ cat(paste("The mean average for the group you have selected is",
 cat('\n')
 cat(paste("The median for the group you have selected is",
          median(params$matched[[i]], na.rm = TRUE)),'\n')
+cat('\n')
+
 }
 ```
 
