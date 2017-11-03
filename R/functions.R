@@ -109,10 +109,16 @@ fn_chart1 <- function(matched_dataset, selected_dataset, plot_measure, plot_type
 # The following is a function that creates chart 2
 
 fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
-  ggplot(data = rbind(comp_dataset, selected_dataset)) +
+  
+  full_datset <- rbind(comp_dataset, selected_dataset)
+  
+  full_datset  %>% 
+    mutate(labels = ifelse(is.na(get(plot_measure)), "DNS or SUPP", get(plot_measure)),
+           numbers_plot = ifelse(is.na(get(plot_measure)), 0, get(plot_measure))) %>% 
+    ggplot() +
     geom_bar(mapping = aes(
       x = reorder(ID, get(plot_measure)),
-      y = get(plot_measure),
+      y = numbers_plot,
       fill = color), 
       stat = "identity",
       na.rm = TRUE) + #remove NAs silently
@@ -121,14 +127,32 @@ fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
     coord_flip() + 
     xlab("Schools") + 
     ylab(plot_measure) + 
-    theme_bw() +
-    geom_text(aes(x = ID, y = get(plot_measure), 
-                  label = get(plot_measure)), #label the values
+    theme_bw() + 
+    scale_y_continuous(expand = c(0,0)) +
+    geom_text(aes(x = ID, y = numbers_plot, 
+                  label = labels), #label the values
               #all values label except for NAs
-              position = position_dodge(.9), hjust=-0.25, #position of values
-              na.rm = TRUE)
+              position = position_dodge(.9), hjust=-0.25)
 }
-
+# fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
+#   ggplot(data = rbind(comp_dataset, selected_dataset)) +
+#     geom_bar(mapping = aes(
+#       x = reorder(ID, get(plot_measure)),
+#       y = get(plot_measure),
+#       fill = color), 
+#       stat = "identity",
+#       na.rm = TRUE) + #remove NAs silently
+#     scale_fill_manual(values = c("#9fb9c8","#104f75")) +
+#     guides(fill = FALSE) +
+#     coord_flip() + 
+#     xlab("Schools") + 
+#     ylab(plot_measure) + 
+#     theme_bw() +
+#     geom_text(aes(x = ID, y = get(plot_measure), 
+#                   label = get(plot_measure)), #label the values
+#               #all values label except for NAs
+#               position = position_dodge(.9), hjust=-0.25)
+# }
 
 
 #Tried to label the NAs but just get blank
