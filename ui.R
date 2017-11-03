@@ -63,13 +63,17 @@ shinyUI(
             ), 
             p("The data in this tool is drawn from the 2016", 
               a("School Workforce Census,", 
-                href = "https://www.gov.uk/government/collections/statistics-school-workforce"), 
+                href = "https://www.gov.uk/government/collections/statistics-school-workforce",
+                target="_blank"), 
               "the January 2016", 
               a("School Census,", 
-                href = "https://www.gov.uk/government/statistics/schools-pupils-and-their-characteristics-january-2016"),
-              a("Edubase", href = "http://www.education.gov.uk/edubase/home.xhtml"),
-              "and the latest",
-              a("Schools Performance Tables.", href = "https://www.compare-school-performance.service.gov.uk/")
+                href = "https://www.gov.uk/government/statistics/schools-pupils-and-their-characteristics-january-2016",
+                target="_blank"),
+              a("Get Information about Schools", href = "https://get-information-schools.service.gov.uk/",
+                target="_blank"),
+              "and the 2016",
+              a("Schools Performance Tables.", href = "https://www.compare-school-performance.service.gov.uk/",
+                target="_blank")
             ),
             h3("Similar Schools"),
             p("This tab allows you to visualise where a school sits on the national distribution for 
@@ -96,10 +100,9 @@ shinyUI(
               width = 195
             ),
             br(),
-            p("If you would like to provide feedback on your experience using the tool, 
-              please fill out our survey", 
-              a("here.", 
-                href = "http://www.smartsurvey.co.uk/s/ZAVEJ/"))
+            h4("If you would like to provide feedback on your experience using the tool,
+              please fill in our survey", 
+              a("here.", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"))
             ),
           position = "right"
           )
