@@ -109,17 +109,35 @@ fn_chart1 <- function(matched_dataset, selected_dataset, plot_measure, plot_type
 # The following is a function that creates chart 2
 
 fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
-  ggplot(data = rbind(comp_dataset, selected_dataset)) +
+  
+  #combine comparison schools and selected school datasets and add columns to allow for labelling NAs
+  full_datset <- rbind(comp_dataset, selected_dataset) %>% 
+    mutate(labels = ifelse(is.na(get(plot_measure)), "DNS or SUPP", get(plot_measure)),
+           numbers_plot = ifelse(is.na(get(plot_measure)), 0, get(plot_measure)))
+  
+  #barplot with labels
+  p <- ggplot(full_datset) +
     geom_bar(mapping = aes(
-      x = reorder(ID, get(plot_measure)),
-      y = get(plot_measure),
+      x = reorder(ID, numbers_plot),
+      y = numbers_plot,
       fill = color), 
-      stat = "identity") + 
+      stat = "identity",
+      na.rm = TRUE) + #remove NAs silently
     scale_fill_manual(values = c("#9fb9c8","#104f75")) +
     guides(fill = FALSE) +
     coord_flip() + 
     xlab("Schools") + 
     ylab(plot_measure) + 
-    theme_bw()
-}
+    theme_bw() + 
+    geom_text(aes(x = ID, y = numbers_plot, label = labels), 
+              position = position_dodge(.9), hjust=-0.25)
+  
+  #change limits of plot for NAs and when value is 0 so that label appears at the start of chart
+  if (is.na(max(full_datset$numbers_plot)) | max(full_datset$numbers_plot) == 0) {
+    p + 
+      scale_y_continuous(expand = c(0,0), limits=c(0,1))
+  } else {
+    p
+  }
 
+}
