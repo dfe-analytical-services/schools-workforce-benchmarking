@@ -74,6 +74,15 @@ shinyServer(function(input, output, session) {
     #hide tabs in navigation bar
     hide("navbar")
     
+    # Reset the tabs
+    
+    reset("t1_content")
+    
+    reset("t2_content")
+    
+    # Ensure Plot tab is selected
+    updateTabsetPanel(session, "t1_tabset", selected = "Plot")
+    
   })
   
   ##tab 1###----------------------------------------------------------------------
