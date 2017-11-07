@@ -112,6 +112,8 @@ shinyUI(
   
       tabPanel(
         "Similar Schools",
+        
+        div(id = "t1_content",
         h2("Comparison of Measures to Similiar Schools"),
         sidebarLayout(
           sidebarPanel(
@@ -190,11 +192,12 @@ shinyUI(
               )
             )
           )
-      ),
+      )),
   
   #tab 2 - school to school comparison
       tabPanel(
         "School to School",
+        div(id = "t2_content",
         h2("School to School Comparison of Measures"),
         sidebarLayout(
           sidebarPanel(
@@ -226,5 +229,6 @@ shinyUI(
         )
       )
     )
+  )
   )
 )

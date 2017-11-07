@@ -74,6 +74,12 @@ shinyServer(function(input, output, session) {
     #hide tabs in navigation bar
     hide("navbar")
     
+    # Reset the tabs
+    
+    reset("t1_content")
+    
+    reset("t2_content")
+    
   })
   
   ##tab 1###----------------------------------------------------------------------
