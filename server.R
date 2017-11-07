@@ -80,6 +80,9 @@ shinyServer(function(input, output, session) {
     
     reset("t2_content")
     
+    # Ensure Plot tab is selected
+    updateTabsetPanel(session, "t1_tabset", selected = "Plot")
+    
   })
   
   ##tab 1###----------------------------------------------------------------------

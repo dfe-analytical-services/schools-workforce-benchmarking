@@ -137,7 +137,7 @@ shinyUI(
           ),
           
           mainPanel(
-            tabsetPanel(
+            tabsetPanel(id = "t1_tabset",
               tabPanel("Plot",
                 br(),
                 fluidRow(
