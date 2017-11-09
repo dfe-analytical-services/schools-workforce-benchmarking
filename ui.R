@@ -20,6 +20,7 @@ shinyUI(
     useShinyjs(), 
   #Hide navbar until button is pressed.
     tags$head(
+  tags$title("Schools Workforce Benchmarking"), 
 	tags$script(src = "effects.js"),
 	tags$script(src = "google-analytics.js")
     ),
