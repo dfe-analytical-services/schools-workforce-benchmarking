@@ -87,6 +87,7 @@ fn_chart1 <- function(matched_dataset, selected_dataset, plot_measure, plot_type
     ggplot() + 
       geom_density(data = matched_dataset,
                    mapping = aes(x = get(plot_measure)),
+                   adjust = 5,
                    na.rm = TRUE) +
       #red dashed line showing the selected school
       geom_vline(data = selected_dataset,aes(xintercept = get(plot_measure)), 
