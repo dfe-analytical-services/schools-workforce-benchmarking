@@ -144,6 +144,9 @@ shinyUI(
                 fluidRow(
                   column(9, 
                     br(),
+                  #text saying the name of selected school
+                    textOutput("t1_school_name"),
+                    br(),
                    #text saying the number of schools in the comparison 
                     textOutput("t1_selected_schools")),
                   
