@@ -170,6 +170,10 @@ shinyServer(function(input, output, session) {
     df <- filter(df, Characteristic %in% phase_characteristics)
   }, options = list(pageLength = 26, autoWidth = FALSE))
   
+  #text saying the name of selected school
+  output$t1_school_name <- renderText({
+    paste("School:", t1_selected_ID()$`School Name`)
+  })
   
   #text saying number of schools in comparison
   output$t1_selected_schools <- renderText({
