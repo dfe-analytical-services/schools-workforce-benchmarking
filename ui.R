@@ -115,7 +115,7 @@ shinyUI(
         "Similar Schools",
         
         div(id = "t1_content",
-        h2("Comparison of Measures to Similiar Schools"),
+        h2("Comparison of Measures to Similar Schools"),
         sidebarLayout(
           sidebarPanel(
             id = "t1_sidebar",
