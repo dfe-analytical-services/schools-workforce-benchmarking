@@ -101,9 +101,9 @@ shinyUI(
               width = 195
             ),
             br(),
-            h4("If you would like to provide feedback on your experience using the tool,
-              please fill in our survey", 
-              a("here.", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"))
+            h3(strong("This is a new service – your", 
+              a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
+              "will help us to improve it."))
             ),
           position = "right"
           )
@@ -180,7 +180,11 @@ shinyUI(
                 textOutput("t1_median"),
                 br(),
               #button to open up dialog box
-                actionButton("t1_choose_measures", "Choose measures for report")
+                actionButton("t1_choose_measures", "Choose measures for report"),
+                br(),
+                h3(strong("This is a new service – your", 
+                        a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
+                        "will help us to improve it."))
               
               ),
               tabPanel("Data",
@@ -228,7 +232,16 @@ shinyUI(
             plotOutput("t2_chart") %>% 
               withSpinner(color = "grey", type = 5, size = getOption("spinner.size", default = 0.4)),
             br(),
-            actionButton("t2_choose_measures", "Choose measures for report")
+            actionButton("t2_choose_measures", "Choose measures for report"),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            h3(strong("This is a new service – your", 
+                      a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
+                      "will help us to improve it."))
           )
         )
       )
