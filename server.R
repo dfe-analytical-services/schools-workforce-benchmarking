@@ -293,6 +293,11 @@ shinyServer(function(input, output, session) {
     )
   }) 
   
+  #text saying the name of selected school
+  output$t2_school_name <- renderText({
+    paste("School:", t1_selected_ID()$`School Name`)
+  })
+  
   #Create reactive dataset for Selected ID tab 2 
   t2_selected_ID <- reactive({
     filter(Data, ID == input$t1_School_ID) %>%

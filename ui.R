@@ -231,7 +231,8 @@ shinyUI(
                     downloadButton("t2_report", "Generate report"))
           ),
           mainPanel(
-            br(),
+            #text saying the name of selected school
+            strong(textOutput("t2_school_name")),
             br(),
             br(),
             plotOutput("t2_chart") %>% 
