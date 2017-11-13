@@ -182,11 +182,9 @@ shinyServer(function(input, output, session) {
   
   #text saying the number of suppressed schools 
   output$t1_suppressed_schools <- renderText({
-    paste("Number of schools with suppressed values or that did not provide a value is",
-          sum(is.na(matched_schools()[[input$t1_measures]])))
+    paste(sum(is.na(matched_schools()[[input$t1_measures]])), "have suppressed or unsubmitted values and are excluded from the chart.")
   })
-  
-  
+
   #text saying value of selected measure for selected school
   output$t1_school_ID_value <- renderText({
     req(input$t1_School_ID, input$t1_measures)
@@ -292,6 +290,11 @@ shinyServer(function(input, output, session) {
       choices = measure_groupings
     )
   }) 
+  
+  #text saying the name of selected school
+  output$t2_school_name <- renderText({
+    paste("School:", t1_selected_ID()$`School Name`)
+  })
   
   #Create reactive dataset for Selected ID tab 2 
   t2_selected_ID <- reactive({

@@ -101,9 +101,9 @@ shinyUI(
               width = 195
             ),
             br(),
-            h4("If you would like to provide feedback on your experience using the tool,
-              please fill in our survey", 
-              a("here.", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"))
+            h4(strong("This is a new service – your", 
+              a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
+              "will help us to improve it."))
             ),
           position = "right"
           )
@@ -116,6 +116,9 @@ shinyUI(
         
         div(id = "t1_content",
         h2("Comparison of Measures to Similar Schools"),
+        h4(strong("This is a new service – your", 
+                  a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
+                  "will help us to improve it."), align = "right"),
         sidebarLayout(
           sidebarPanel(
             id = "t1_sidebar",
@@ -148,14 +151,13 @@ shinyUI(
                     strong(textOutput("t1_school_name")),
                     br(),
                    #text saying the number of schools in the comparison 
-                    textOutput("t1_selected_schools")),
+                    textOutput("t1_selected_schools"),
+                    textOutput("t1_suppressed_schools")),
                   
                   
                 #radio buttons to choose density plot or histogram  
                   column(3, radioButtons("plot_type", "Plot type", c("density", "histogram"), inline = TRUE))
                 ),
-                #text saying the number of suppressed schools 
-                textOutput("t1_suppressed_schools"),
                 br(),
                 em("If number of schools in the comparison falls below 15, it
                      may be more useful to look at the histogram"),
@@ -203,6 +205,9 @@ shinyUI(
         "School to School",
         div(id = "t2_content",
         h2("School to School Comparison of Measures"),
+        h4(strong("This is a new service – your", 
+                  a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
+                  "will help us to improve it."), align = "right"),
         sidebarLayout(
           sidebarPanel(
             id = "t2_sidebar",
@@ -225,6 +230,10 @@ shinyUI(
                     downloadButton("t2_report", "Generate report"))
           ),
           mainPanel(
+            br(),
+            #text saying the name of selected school
+            strong(textOutput("t2_school_name")),
+            br(),
             plotOutput("t2_chart") %>% 
               withSpinner(color = "grey", type = 5, size = getOption("spinner.size", default = 0.4)),
             br(),
