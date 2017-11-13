@@ -27,14 +27,14 @@ shinyUI(
   
   #create a page with navigation bar at the top
     navbarPage(
-      "Schools Workforce Benchmarking",
+      "Schools Workforce Benchmarking (Pilot)",
       id = "navbar",
    
   #Front page of tool
   
       tabPanel(
         "Front Page",
-        h2("Schools Workforce Benchmarking (BETA)"),
+        h2("Schools Workforce Benchmarking (Pilot)"),
         
         sidebarLayout(
           sidebarPanel(
