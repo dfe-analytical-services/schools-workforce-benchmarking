@@ -116,6 +116,9 @@ shinyUI(
         
         div(id = "t1_content",
         h2("Comparison of Measures to Similar Schools"),
+        h4(strong("This is a new service – your", 
+                  a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
+                  "will help us to improve it."), align = "right"),
         sidebarLayout(
           sidebarPanel(
             id = "t1_sidebar",
@@ -180,11 +183,7 @@ shinyUI(
                 textOutput("t1_median"),
                 br(),
               #button to open up dialog box
-                actionButton("t1_choose_measures", "Choose measures for report"),
-                br(),
-                h3(strong("This is a new service – your", 
-                        a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
-                        "will help us to improve it."))
+                actionButton("t1_choose_measures", "Choose measures for report")
               
               ),
               tabPanel("Data",
@@ -207,6 +206,9 @@ shinyUI(
         "School to School",
         div(id = "t2_content",
         h2("School to School Comparison of Measures"),
+        h4(strong("This is a new service – your", 
+                  a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
+                  "will help us to improve it."), align = "right"),
         sidebarLayout(
           sidebarPanel(
             id = "t2_sidebar",
@@ -229,19 +231,13 @@ shinyUI(
                     downloadButton("t2_report", "Generate report"))
           ),
           mainPanel(
+            br(),
+            br(),
+            br(),
             plotOutput("t2_chart") %>% 
               withSpinner(color = "grey", type = 5, size = getOption("spinner.size", default = 0.4)),
             br(),
-            actionButton("t2_choose_measures", "Choose measures for report"),
-            br(),
-            br(),
-            br(),
-            br(),
-            br(),
-            br(),
-            h3(strong("This is a new service – your", 
-                      a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
-                      "will help us to improve it."))
+            actionButton("t2_choose_measures", "Choose measures for report")
           )
         )
       )
