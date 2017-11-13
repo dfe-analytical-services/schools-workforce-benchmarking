@@ -151,7 +151,8 @@ shinyUI(
                     strong(textOutput("t1_school_name")),
                     br(),
                    #text saying the number of schools in the comparison 
-                    textOutput("t1_selected_schools")),
+                    textOutput("t1_selected_schools"),
+                    textOutput("t1_suppressed_schools")),
                   
                   
                 #radio buttons to choose density plot or histogram  

@@ -177,12 +177,14 @@ shinyServer(function(input, output, session) {
   
   #text saying number of schools in comparison
   output$t1_selected_schools <- renderText({
-    paste("Number of similar schools is ", nrow(matched_schools())," - ", 
-          sum(is.na(matched_schools()[[input$t1_measures]])), " have suppressed or 
-          unsubmitted values and are excluded from the chart.", sep ="")
+    paste("Number of similar schools is", nrow(matched_schools()))
   })
   
-  
+  #text saying the number of suppressed schools 
+  output$t1_suppressed_schools <- renderText({
+    paste(sum(is.na(matched_schools()[[input$t1_measures]])), "have suppressed or unsubmitted values and are excluded from the chart.")
+  })
+
   #text saying value of selected measure for selected school
   output$t1_school_ID_value <- renderText({
     req(input$t1_School_ID, input$t1_measures)
