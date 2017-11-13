@@ -101,7 +101,7 @@ shinyUI(
               width = 195
             ),
             br(),
-            h3(strong("This is a new service – your", 
+            h4(strong("This is a new service – your", 
               a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
               "will help us to improve it."))
             ),
@@ -229,9 +229,9 @@ shinyUI(
                     downloadButton("t2_report", "Generate report"))
           ),
           mainPanel(
+            br(),
             #text saying the name of selected school
             strong(textOutput("t2_school_name")),
-            br(),
             br(),
             plotOutput("t2_chart") %>% 
               withSpinner(color = "grey", type = 5, size = getOption("spinner.size", default = 0.4)),

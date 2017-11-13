@@ -177,9 +177,9 @@ shinyServer(function(input, output, session) {
   
   #text saying number of schools in comparison
   output$t1_selected_schools <- renderText({
-    paste("Number of similar schools is", nrow(matched_schools()),",", 
-          sum(is.na(matched_schools()[[input$t1_measures]])), "have suppressed values
-          or did not provide a value so are not in the chart.")
+    paste("Number of similar schools is ", nrow(matched_schools()),". ", 
+          sum(is.na(matched_schools()[[input$t1_measures]])), " have suppressed values
+          or did not provide a value so are not in the chart.", sep ="")
   })
   
   
