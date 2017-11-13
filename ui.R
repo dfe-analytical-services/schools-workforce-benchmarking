@@ -157,8 +157,6 @@ shinyUI(
                 #radio buttons to choose density plot or histogram  
                   column(3, radioButtons("plot_type", "Plot type", c("density", "histogram"), inline = TRUE))
                 ),
-                #text saying the number of suppressed schools 
-                textOutput("t1_suppressed_schools"),
                 br(),
                 em("If number of schools in the comparison falls below 15, it
                      may be more useful to look at the histogram"),
