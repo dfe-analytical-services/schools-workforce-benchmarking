@@ -59,30 +59,31 @@ shinyUI(
           mainPanel(
             h3("Summary"),
             p(
-              "This web application allows you to visually compare published measures on school's
-               workforces against other schools of the same phase."
+              "This tool lets you compare primary, secondary and special schools’ 
+              staffing with other schools in the same phase."
             ), 
-            p("The data in this tool is drawn from the 2016", 
+            p("The data used in this tool comes from the 2016", 
               a("School Workforce Census.", 
                 href = "https://www.gov.uk/government/collections/statistics-school-workforce",
                 target="_blank"), 
-              "School characteristics data is drawn from a range of published DfE data sources detailed
-              in the guidance."
+              "as well as a range of published DfE data sources (see the guidance for details)."
             ),
             h3("Similar Schools"),
-            p("This tab allows you to visualise where a school sits on the national distribution for 
-             each measure. By selecting characteristics, you can subset this distribution to compare 
-             against schools that have similar characteristics to the selected school."
+            p("This tab allows you to produce graphs showing where a school sits on the national 
+              distribution for different measures, like pupil: teacher ratio, the percentage of 
+              part-time teaching staff, and teachers’ salaries. By selecting characteristics, 
+              you can compare against schools that have similar characteristics (for example, 
+              schools in the same region, with the same Ofsted rating, or with a similar percentage 
+              of pupils with SEN support)."
               ),
             h3("School to School"),
             p("This tab allows you to select up to 10 individual schools that you would like to 
-              compare against the selected school and plots the resultant data."
+              compare against the selected school, and view the comparison on a graph."
               ),
             h3("Further Information"),
-            p("From both of these tabs you are be able to generate printable reports with the charts
-               for multiple measures"),
-            p("Data that was recorded as Supressed or not submitted in the published SFR is set
-              as blank throughout the tool."),
+            p("From both of these tabs you are be able to generate printable reports."),
+            p("Data that was recorded as suppressed or not submitted in the published statistical 
+              first release is set as blank throughout the tool."),
             br(),
             br(),
             br(),
