@@ -63,18 +63,11 @@ shinyUI(
                workforces against other schools of the same phase."
             ), 
             p("The data in this tool is drawn from the 2016", 
-              a("School Workforce Census,", 
+              a("School Workforce Census.", 
                 href = "https://www.gov.uk/government/collections/statistics-school-workforce",
                 target="_blank"), 
-              "the January 2017", 
-              a("School Census,", 
-                href = "https://www.gov.uk/government/statistics/schools-pupils-and-their-characteristics-january-2017",
-                target="_blank"),
-              a("Get Information about Schools", href = "https://get-information-schools.service.gov.uk/",
-                target="_blank"),
-              "and the 2016",
-              a("Schools Performance Tables.", href = "https://www.compare-school-performance.service.gov.uk/",
-                target="_blank")
+              "School characteristics data is drawn from a range of published DfE data sources detailed
+              in the guidance."
             ),
             h3("Similar Schools"),
             p("This tab allows you to visualise where a school sits on the national distribution for 
