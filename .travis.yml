@@ -24,5 +24,7 @@ deploy:
   - R -f deploy.R
   skip_cleanup: true
   on: 
-    branch: master, develop
+    branch: 
+    - master
+    - develop
     repo: DFEAGILEDEVOPS/schools-workforce-benchmarking
