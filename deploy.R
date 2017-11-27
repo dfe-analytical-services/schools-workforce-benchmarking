@@ -13,5 +13,8 @@ rsconnect::setAccountInfo(
   secret=Sys.getenv("SHINYAPPS_SECRET")
   )
 
+# Print name to console
+print(app_name)
+
 # Deploy
-rsconnect::deployApp()
+rsconnect::deployApp(appName = app_name)
