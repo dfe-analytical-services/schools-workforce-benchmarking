@@ -63,14 +63,14 @@ shinyUI(
               staffing with other schools in the same phase."
             ), 
             p("The data used in this tool comes from the 2016", 
-              a("School Workforce Census.", 
+              a("School Workforce Census", 
                 href = "https://www.gov.uk/government/collections/statistics-school-workforce",
                 target="_blank"), 
               "as well as a range of published DfE data sources (see the guidance for details)."
             ),
             h3("Similar Schools"),
             p("This tab allows you to produce graphs showing where a school sits on the national 
-              distribution for different measures, like pupil: teacher ratio, the percentage of 
+              distribution for different measures, like pupil: teacher ratio, percentages of 
               part-time teaching staff, and teachers’ salaries. By selecting characteristics, 
               you can compare against schools that have similar characteristics (for example, 
               schools in the same region, with the same Ofsted rating, or with a similar percentage 
