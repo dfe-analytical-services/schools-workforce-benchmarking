@@ -109,7 +109,7 @@ shinyUI(
         "Similar Schools",
         
         div(id = "t1_content",
-        h2("Comparison of Measures to Similar Schools"),
+        h2("Comparison to Similar Schools"),
         h4(strong("This is a new service – your", 
                   a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
                   "will help us to improve it."), align = "right"),
@@ -128,7 +128,7 @@ shinyUI(
                   #dropdown of report measures
                     uiOutput("t1_report_measures"),
                   #option to choose type of plot
-                    radioButtons("report_plot_type", "Plot type", c("density", "histogram")),
+                    radioButtons("report_plot_type", "Graph type", c("density plot", "histogram")),
                     br(),
                     downloadButton("t1_report", "Generate report")
             )
@@ -150,7 +150,7 @@ shinyUI(
                   
                   
                 #radio buttons to choose density plot or histogram  
-                  column(3, radioButtons("plot_type", "Plot type", c("density", "histogram"), inline = TRUE))
+                  column(3, radioButtons("plot_type", "Graph type", c("density plot", "histogram"), inline = TRUE))
                 ),
                 br(),
                 em("If number of schools in the comparison falls below 15, it
@@ -198,7 +198,7 @@ shinyUI(
       tabPanel(
         "School to School",
         div(id = "t2_content",
-        h2("School to School Comparison of Measures"),
+        h2("School to School Comparison"),
         h4(strong("This is a new service – your", 
                   a("feedback", href = "http://www.smartsurvey.co.uk/s/ZAVEJ/", target="_blank"),
                   "will help us to improve it."), align = "right"),
