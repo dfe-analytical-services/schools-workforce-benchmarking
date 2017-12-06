@@ -83,7 +83,7 @@ fn_match_schools <- function(dataset,
 # The following is a function that creates chart 1
 
 fn_chart1 <- function(matched_dataset, selected_dataset, plot_measure, plot_type){
-  if (plot_type == "density") {
+  if (plot_type == "density plot") {
     ggplot() + 
       geom_density(data = matched_dataset,
                    mapping = aes(x = get(plot_measure)),

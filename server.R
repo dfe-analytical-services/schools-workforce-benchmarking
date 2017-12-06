@@ -107,9 +107,8 @@ shinyServer(function(input, output, session) {
   output$t1_characteristics <- renderUI({
     checkboxGroupInput(
       inputId = "t1_characteristics", 
-      label = "Characteristics of Schools to compare against (by selecting a 
-      characteristic here you are comparing against schools that are
-      similar to you in that characteristic):",
+      label = "Characteristics of schools to compare (by selecting from this list, 
+      you can compare with schools that have similar characteristics):",
       choices = characteristics_dd$Characteristic_Label[characteristics_dd$Type == Data$`School Phase`[Data$ID == input$t1_School_ID]])
   })
  
