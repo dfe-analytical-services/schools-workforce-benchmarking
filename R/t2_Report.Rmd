@@ -8,7 +8,7 @@ params:
 ---
 ```{r, results='asis', echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6.5}
 
-#loop through each deployment measure
+#loop through each workforce measure
 for (i in params$t2_measures){
 cat('\n')  
 cat("#",i, "\n")

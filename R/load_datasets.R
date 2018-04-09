@@ -1,4 +1,5 @@
 #Load in core data  
+#set columns to type character as default
 
 Data <- read_csv("Data/deploy_sfr_2016.csv",  col_types = cols(.default = "c"))
 
@@ -18,11 +19,9 @@ Data$ID <- paste(Data$URN,' - ', Data$`School Name`, sep = '')
 characteristics_dd <- read_csv("Data/Characteristics.csv", col_types = cols(.default = "c")) 
 
 #Load in list of characteristics and their type of match for comparisons
-
 characteristics_match <- read_csv("Data/characteristics_match.csv", col_types = cols(.default = "c"))
 
-# Create list of measure groupings
-
+#Group measures into categories
 measure_groupings <- list("Staff Headcount" = colnames(Data)[5:12],
                           "Staff FTE" = colnames(Data)[13:21],
                           "Teacher Characteristics" = colnames(Data)[22:26],

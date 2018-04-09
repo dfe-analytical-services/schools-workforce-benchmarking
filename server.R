@@ -1,13 +1,12 @@
 #server.R
 
 #Load Required Packages ----------------------------------------------------------------------
-
 library(tidyverse)
 
+#load in functions
 source('R/functions.R')
 
 #Load in relevant data  ----------------------------------------------------------------------
-
 source("R/load_datasets.R")
 
 #define server logic -------------------------------------------------------------------------
@@ -54,7 +53,7 @@ shinyServer(function(input, output, session) {
     
   })
   
-  #response to event of clicking chnage School ID button
+  #response to event of clicking change School ID button
   observeEvent(input$change_t1_School_ID,{
     #show school ID dropdown
     show("t1_School_ID")
@@ -156,6 +155,7 @@ shinyServer(function(input, output, session) {
   output$t1_data_table <-  DT::renderDataTable({
     matched_schools() %>%
       mutate(Value = matched_schools()[[input$t1_measures]]) %>% 
+      #add school's name which links to their Get Information About Schools Page
       mutate(`School Name` = paste("<a href='https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/",
                                    URN, "' target='_blank'",">", `School Name`, "</a>", sep = "")) %>%
       select(URN, `School Name`, Value)
