@@ -20,8 +20,10 @@ shinyUI(
     useShinyjs(), 
   #Hide navbar until button is pressed.
     tags$head(
-  tags$title("Schools Workforce Benchmarking"), 
+  tags$title("Schools Workforce Benchmarking"),
+  #jquery script
 	tags$script(src = "effects.js"),
+  #google analytics script
 	tags$script(src = "google-analytics.js")
     ),
   
@@ -136,6 +138,7 @@ shinyUI(
           
           mainPanel(
             tabsetPanel(id = "t1_tabset",
+              #3 tab panels: Plot, Data, Characteristics
               tabPanel("Plot",
                 br(),
                 fluidRow(
@@ -146,6 +149,7 @@ shinyUI(
                     br(),
                    #text saying the number of schools in the comparison 
                     textOutput("t1_selected_schools"),
+                   #text saying number of suppressed schools
                     textOutput("t1_suppressed_schools")),
                   
                   
@@ -217,7 +221,7 @@ shinyUI(
             ),
             em("Please note, comparing very different schools may not produce meaningful
             results."),
-
+          #dialog box to choose measures for report
             bsModal(id = "t2_dialog_box", title = "Choose measures for report",
                     trigger = "t2_choose_measures", size = "large",
                     uiOutput("t2_report_measures"),

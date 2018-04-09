@@ -1,3 +1,6 @@
+#Tests that app runs correctly
+#Adam Robinson
+
 library(testthat)
 library(RSelenium)
 

@@ -16,9 +16,10 @@ params:
 You have chosen to compare on the following characteristics:
 <br>
 ```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE}
-# The selected characteristics
+#load package
 library(knitr)
 
+#put characteristics into a table
 data.frame(Characteristics = params$characteristics) %>%
   kable()
 
@@ -29,7 +30,7 @@ data.frame(Characteristics = params$characteristics) %>%
 ```{r, results='asis',echo=FALSE, warning=FALSE, message=FALSE, fig.height=4, fig.width=6.5}
 
 
-#loop through each deployment measure, chart and statements
+#loop through each workforce measure, chart and statements
 
 for (i in params$measures) {
 
@@ -37,7 +38,6 @@ cat('\n') #start new line
 cat("#",i, "\n")
 
 #if density selected print density plot, else print histogram
-
 print(fn_chart1(params$matched, params$selected, i, params$plot_type))
 
 cat('\n')

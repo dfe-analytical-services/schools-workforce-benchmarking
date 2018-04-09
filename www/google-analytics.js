@@ -1,4 +1,6 @@
 //Google Analytics
+
+//code to add general tracking to the tool
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();
   a=s.createElement(o), m=s.getElementsByTagName(o)[0];
@@ -9,6 +11,7 @@
   ga('create', 'UA-108704572-1', 'auto');
   ga('send', 'pageview');
 
+//Tracking activity in the tool
 
 //Front page
 
@@ -37,7 +40,7 @@ $(document).on('change', '#plot_type :radio', function(e) {
 
 
 
-//Track characteristics on similar schools tab  
+//Track characteristics chosen on similar schools tab  
   $(document).on('change', '#t1_characteristics :checkbox', function(e) {
       if(this.checked) {
         ga('send', 'event', 'widget', 'select t1 checkbox', $(e.currentTarget).val());

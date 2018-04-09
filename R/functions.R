@@ -1,6 +1,11 @@
+#Functions used in tool
+#1. Similar Schools function
+#2. Similar Schools chart
+#3. School to School chart
+
 library(tidyverse)
 
-# This following funciton is used to generate a subset of schools via the selected school ID
+# 1. This following funciton is used to generate a subset of schools via the selected school ID
 # and the characteristics selected.
 
 fn_match_schools <- function(dataset,
@@ -21,7 +26,7 @@ fn_match_schools <- function(dataset,
   selected_phase_data <- dataset %>%
     filter(`School Phase` == selected_phase)
   
-  # For each characteristic that is selelected filter the dataset
+  # For each characteristic that is selected filter the dataset
   for (i in input_characteristics) {
     
     # Get measure value
@@ -30,15 +35,18 @@ fn_match_schools <- function(dataset,
       as.character()
     
     
-    # Get typpe of measure to work out which filter to apply
+    # Get type of characteristic to work out which filter to apply
     type <- characteristics_lookup %>%
       filter(Characteristic_Label == i) %>%
       select(Match_type) %>%
       as.character()
     
+    #create tolerance - i.e. very small number to add to measure value due to R's floating
+    #point issue - https://cran.r-project.org/doc/FAQ/R-FAQ.html#Why-doesn_0027t-R-think-these-numbers-are-equal_003f 
     tolerance <- 1e-10
    
-    #If numerical then apply 10 percentage tollearance
+    #If characteristic is numerical then apply 10 percentage tolerance
+    #i.e. include schools within 10% of the selected schools characteristic value
     if (type == "Percentage") {
       selected_phase_data <-
         filter(
@@ -47,7 +55,9 @@ fn_match_schools <- function(dataset,
           get(i) < as.numeric(measure_value) * 1.1
         )
     }
-    #If percentage then apply +- 10 percentage point tollerance
+    
+    #If characteristic is a percentage then apply +- 10 percentage point tolerance
+    #e.g. % pupils with SEN support
     else if (type == "Percentage point 1") {
       selected_phase_data <-
         filter(
@@ -59,6 +69,7 @@ fn_match_schools <- function(dataset,
     
     
     #If Value Added then apply +- 0.1 percentage point tollerance
+    #include the extra tolerance created above
     else if (type == "Percentage point 2") {
       selected_phase_data <-
         filter(
@@ -80,14 +91,14 @@ fn_match_schools <- function(dataset,
 
 }
 
-# The following is a function that creates chart 1
+# 2. The following is a function that creates chart 1 - similar schools chart
 
 fn_chart1 <- function(matched_dataset, selected_dataset, plot_measure, plot_type){
   if (plot_type == "density plot") {
     ggplot() + 
       geom_density(data = matched_dataset,
                    mapping = aes(x = get(plot_measure)),
-                   adjust = 5,
+                   adjust = 5, #smoothes out the distribution curve
                    na.rm = TRUE) +
       #red dashed line showing the selected school
       geom_vline(data = selected_dataset,aes(xintercept = get(plot_measure)), 
@@ -107,7 +118,7 @@ fn_chart1 <- function(matched_dataset, selected_dataset, plot_measure, plot_type
   }
 }
 
-# The following is a function that creates chart 2
+# 3. The following is a function that creates chart 2
 
 fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
   
@@ -124,8 +135,8 @@ fn_chart2 <- function(comp_dataset, selected_dataset, plot_measure){
       fill = color), 
       stat = "identity",
       na.rm = TRUE) + #remove NAs silently
-    scale_fill_manual(values = c("#9fb9c8","#104f75")) +
-    guides(fill = FALSE) +
+    scale_fill_manual(values = c("#9fb9c8","#104f75")) + #DfE colours
+    guides(fill = FALSE) + #remove legend
     coord_flip() + 
     xlab("Schools") + 
     ylab(plot_measure) + 
