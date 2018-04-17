@@ -33,3 +33,46 @@ To run the project on your machine you need to do the following:
 `Packrat bootstrap successfully completed. Restarting R and entering packrat mode...`
    
 5. Open the UI.R or Server.R file and hit Run App.    
+
+## Project Structure
+
+Throughout the project code is modulated and all files are in relevant sub folders. Chunks of code are loaded using `source("script_name.R")`. This allows code to be reused and split into manageable scripts.
+
+### Data folder
+
+This folder contains the data for the tool. 
+
+- **Characteristics.csv** - list of the school characteristics and corresponding phase type
+- **characteristics_match.csv** - list of characteristics and the type of match for creating subset of similar schools
+- **deploy_sfr_2016.csv** - raw data for the tool (includes workforce data and school characteristics)
+
+### packrat folder
+
+Contains the packages and keeps the versions contained.
+
+### R folder
+
+This folder contains all of the R scripts that make up the project. 
+
+- **functions.R** - contains functions to create subset of similar schools and generate charts
+- **load_datasets.R** - loads the raw data into the app
+- **t1_Report.Rmd** - creates downloadable report for similar schools charts
+- **t2_Report.Rmd** - creates downloadable report for individual schools charts
+
+### tests folder
+
+Contains R scripts to test that the similar schools function and the app itself are running correctly and accurately
+
+### www folder
+
+Contains DfE logo image, Google Analytics tracking code and script to add extra functionality to app.
+
+## Data Sources
+
+The majority of the data is from the 2016 School Workforce Census.
+
+The school characteristics data are from various external publications including:
+- School Census
+- Pupil Absence data
+- Peformance Tables
+- Ofsted
